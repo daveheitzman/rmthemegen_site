@@ -3,7 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 gem 'color'
 gem 'xml-simple'
-gem 'rmthemegen', '>=0.0.3'
+gem 'rmthemegen'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
