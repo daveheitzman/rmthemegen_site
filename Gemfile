@@ -5,6 +5,7 @@ gem 'color'
 gem 'xml-simple'
 gem 'rmthemegen'
 
+gem 'mysql'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
