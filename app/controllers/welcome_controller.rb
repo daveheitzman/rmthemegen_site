@@ -28,8 +28,6 @@ class WelcomeController < ApplicationController
 
     @ban = make_banner
 
-#    @c=Color::RGB.new(100,200,100)
- #   @rc= RMThemeGen::ThemeGenerator.new
   end
 
 end
