@@ -48,7 +48,11 @@ AptifugeCom::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "welcome#index"
+  root :to => "theme#index"
+  match 'theme/upvote/:id' => 'theme#upvote'
+  match 'theme/downvote/:id' => 'theme#downvote'
+  match 'theme/download/:id' => "theme#download"
+  resources :theme
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class ThemeController < ApplicationController
 
 
   def make_banner
@@ -31,7 +31,28 @@ class WelcomeController < ApplicationController
     flash[:notice] = "do maintenance theme called"
     #get a theme and display
     @theme1 = RmtTheme.all.shuffle!.first
+  end
+
+  def download
+    theme = RmtTheme.find(params[:id])
     
+  end
+
+  def click
+  end
+
+  def upvote
+    @ban = make_banner
+    @theme1 = RmtTheme.find(params[:id])
+    flash[:notice] = params[:id].to_s+" was upvoted"
+    render "index"
+  end
+
+  def downvote
+    @ban = make_banner
+    @theme1 = RmtTheme.find(params[:id])
+    flash[:notice] = params[:id].to_s+" was downvoted"
+    render "index"
   end
 
 end
