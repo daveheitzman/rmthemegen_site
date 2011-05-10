@@ -18,19 +18,19 @@
     </requirement>
     <requirement>
       <requirement>
+        <dependency name="mysql" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="rails" version="3.0.3" bound="EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rmthemegen" version="0.0.3" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
-      </requirement>
-      <source from="Gemfile" />
-    </requirement>
-    <requirement>
-      <requirement>
-        <dependency name="sqlite3-ruby" version="0" bound="GREATER_OR_EQUAL" lib="sqlite3" git="false" path="false" doRequire="true" />
+        <dependency name="rmthemegen" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -74,6 +74,10 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] mime-types (v1.16, /usr/local/lib/ruby/gems/1.9.1/gems/mime-types-1.16)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] sqlite3-ruby (v1.3.3, /home/gruen/.gem/gems/sqlite3-ruby-1.3.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] sqlite3 (v1.3.3, /home/gruen/.gem/gems/sqlite3-1.3.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rmthemegen (v0.0.6, /home/gruen/.gem/gems/rmthemegen-0.0.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] xml-simple (v1.0.15, /home/gruen/.gem/gems/xml-simple-1.0.15)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] color (v1.4.1, /home/gruen/.gem/gems/color-1.4.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] mysql (v2.8.1, /usr/local/lib/ruby/gems/1.9.1/gems/mysql-2.8.1)" level="application" />
   </component>
 </module>
 

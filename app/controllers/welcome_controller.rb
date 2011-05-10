@@ -24,10 +24,14 @@ class WelcomeController < ApplicationController
           '</div>    </div></div>'
 
   end
+  
   def index
-
     @ban = make_banner
-
+    RmtTheme.do_maintenance
+    flash[:notice] = "do maintenance theme called"
+    #get a theme and display
+    @theme1 = RmtTheme.all.shuffle!.first
+    
   end
 
 end

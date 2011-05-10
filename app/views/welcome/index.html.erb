@@ -1,4 +1,7 @@
 <p> index.html.erb </p>
+<p> flash: </p>
+<p><%=h flash[:notice] %> </p>
+
 
 <div class="theme" >
  <div class="preview">
@@ -6,7 +9,7 @@
  <div id="preview-1" onclick="location.href='/?view=theme&amp;id=1'" class="preview-html">
   <style type="text/css">
 body { margin: 0px; padding: 0px; }
-#theme-1 .view { font-family: monospace; font-family: "DejaVu Sans Mono", monospace; font-size: 12px;background-color: #1E1E1E; }
+#theme-1 .view {  font-size: 12px;background-color: #1E1E1E; }
 #theme-1 .lineNumber { color: #D0D0D0; }
 #theme-1 .sidebar { border-right: 1px solid #D0D0D0; }
 #theme-1 .line { height: 15px; padding-left: 5px; padding-right: 10px; padding-top: 1px; }
@@ -76,21 +79,32 @@ body { margin: 0px; padding: 0px; }
 <div class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public static void</span> <span class="methoddeclaration">main</span>(<span class="class">String</span>[] <span class="parametervariable">args</span>) {</div>
 <div class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Demo</span> <span class="localvariabledeclaration">demo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="method">Demo</span>();</div>
 
-<div class="line">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+<div class="line">&nbsp;&nbsp;&nbsp;&nbsp;}</div>
 <div class="line">}</div>
 </div>
+
 </div>
-<div class="clear"></div>
+
+  <div class="clear">
+
 </div>
+
+</div>
+
+
 </div>
 <!-- END PREVIEW -->
+
   </div>
+   <div class="info">
+      <span class="toppick">Top Pick</span>
+
+      <a href="/?view=theme&amp;id=1">Oblivion</a>
+    <span class="downloads">by Roger Dudler - 5891 DLs</span>
+   </div>
  </div>
 </div>
- <div class="info">
-    <span class="toppick">Top Pick</span>
 
-    <a href="/?view=theme&amp;id=1">Oblivion</a> 
-  <span class="downloads">by Roger Dudler - 5891 DLs</span>
- </div>
 
+
+<%= render "theme_preview" %>

@@ -1,0 +1,41 @@
+<div class="theme" >
+ <div class="preview">
+
+ <div id="<%=@theme1.theme_name %>" onclick="location.href='/?view=theme&amp;id=1'" class="preview-html">
+<%= raw @theme1.to_css%>
+
+<div class="line"><span class = "RUBY_KEYWORD">require</span><span class = "RUBY_STRING"> "test"</span></div>
+<div class="line">CONSTANT = 777</div>
+   <div class="line"></div>
+<div class="line"># Sample comment</div>
+   <div class="line"></div>
+
+<div class="line">module SampleModule</div>
+<div class="line">  include Testcase</div>
+   <div class="line"></div>
+
+<div class="line">  render :action => 'foo'</div>
+<div class="line">  def foo(parameter)</div>
+<div class="line">    @parameter = parameter</div>
+<div class="line">  end</div>
+   <div class="line"></div>
+
+<div class="line">  local_var = eval <<-"FOO";\</div>
+<div class="line">  printIndex "Hello world!"</div>
+<div class="line">  And now this is heredoc!</div>
+<div class="line">  printIndex "Hello world again!"</div>
+<div class="line">  FOO</div>
+<div class="line">  foo("#{$GLOBAL_TIME >> $`} is \Z sample \"string\"" * 777);</div>
+<div class="line">  if ($1 =~ /sample regular expression/ni) then</div>
+<div class="line">  begin</div>
+<div class="line">    puts %W(sample words), CONSTANT, :fooo;</div>
+<div class="line">    do_something :action => "action"</div>
+<div class="line">  end</div>
+<div class="line">  1.upto(@@n) do |index| printIndex "Hello" + index end</div>
+<div class="line">  \\\\\\\\\\</div>
+<div class="line">  end</div>
+<div class="line">end</div>
+
+  </div>
+</div></div>
+<div>theme name: <%= raw @theme1.theme_name %></div>
