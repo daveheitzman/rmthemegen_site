@@ -24,16 +24,21 @@ class ThemeController < ApplicationController
           '</div>    </div></div>'
 
   end
-  
+
+
+  def populate_themes_for_display
+    @dark_themes = RmtTheme.where('bg_color_style = ?',0)
+    @light_themes = RmtTheme.where('bg_color_style = ?',1)
+    @color_themes = RmtTheme.where('bg_color_style = ?',2)
+
+  end
   def index
 
     flash[:notice] = ''
    # flash[:notice] = "do maintenance theme called"
     #get a theme and display
    # @theme1 = RmtTheme.all.shuffle!.first
-    @dark_themes = RmtTheme.where('bg_color_style = ?',0)
-    @light_themes = RmtTheme.where('bg_color_style = ?',1)
-    @color_themes = RmtTheme.where('bg_color_style = ?',2)
+    populate_themes_for_display
   end
 
   def show_colortype_page
@@ -53,6 +58,12 @@ class ThemeController < ApplicationController
   
   def download
     theme = RmtTheme.find(params[:id])
+    if theme.file_path
+      send_file(theme.file_path)
+      theme.times_downloaded += 1
+      theme.save
+    end
+    populate_themes_for_display
   end
 
   def click
@@ -63,6 +74,7 @@ class ThemeController < ApplicationController
     @theme1.upvotes= @theme1.upvotes + 1
     @theme1.save
     flash[:notice] = params[:id].to_s+" was upvoted"
+    populate_themes_for_display
     render "index"
   end
 
@@ -71,6 +83,7 @@ class ThemeController < ApplicationController
     @theme1.downvotes= @theme1.downvotes + 1
     @theme1.save
     flash[:notice]= params[:id].to_s+" was downvoted"
+    populate_themes_for_display
     render "index"
   end
 

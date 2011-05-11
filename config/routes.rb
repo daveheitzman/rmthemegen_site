@@ -52,7 +52,7 @@ AptifugeCom::Application.routes.draw do
   match 'theme/upvote/:id' => 'theme#upvote'
   match 'theme/downvote/:id' => 'theme#downvote'
   match 'theme/download/:id' => "theme#download"
-
+  
   resources :theme do
     get 'show_colortype_page/:type'  => "theme#show_colortype_page", :on=>:collection
   end
