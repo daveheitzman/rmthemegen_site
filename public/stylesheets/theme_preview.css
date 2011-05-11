@@ -368,7 +368,7 @@ a.button-plugin img {
 	font-size: 12px;
 	padding: 0px 0px 0px 0px;
 	float: left;
-	width: 389px;
+	width: 282px;
 }
 
 .sidebar {
@@ -405,8 +405,8 @@ a.button-plugin img {
 .theme {
 	float: left;
 	width: 284px;
-	margin: 1px 2px 5px 2px;
-
+	margin: 1px 4px 5px 4px;
+    padding: none;
 }
 
 .theme .preview {
@@ -415,9 +415,13 @@ a.button-plugin img {
 	border: 1px solid #DDD;
 	padding: 0px 0px 0px 0px;
 	border: 1px solid #DDD;
+    margin:0;
 }
 
 .theme .preview-html {
+    margin:none;
+    padding:none;
+    border: solid black 1px;
 	cursor: pointer;
 	width: 282px;
 	height: 200px;

@@ -1,6 +1,5 @@
 class ThemeController < ApplicationController
-  before_filter :make_banner
-  
+  before_filter :make_banner, :do_maintenance
   
   def make_banner
     #makes a banner with the regular greenish background, but random foreground colors for each letter. 
@@ -27,16 +26,31 @@ class ThemeController < ApplicationController
   end
   
   def index
-    RmtTheme.do_maintenance
+
     flash[:notice] = ''
    # flash[:notice] = "do maintenance theme called"
     #get a theme and display
    # @theme1 = RmtTheme.all.shuffle!.first
     @dark_themes = RmtTheme.where('bg_color_style = ?',0)
     @light_themes = RmtTheme.where('bg_color_style = ?',1)
-    @colorful_themes = RmtTheme.where('bg_color_style = ?',2)
+    @color_themes = RmtTheme.where('bg_color_style = ?',2)
   end
 
+  def show_colortype_page
+    @dark_themes = nil
+    @light_themes= nil
+    @color_themes= nil
+    case (params[:type])
+      when "dark"
+      @dark_themes = RmtTheme.where('bg_color_style = ?',0)
+      when "color"
+      @color_themes = RmtTheme.where('bg_color_style = ?',2)
+      when "light"
+      @light_themes = RmtTheme.where('bg_color_style = ?',1)
+    end
+    render "theme/colortypepage"
+  end
+  
   def download
     theme = RmtTheme.find(params[:id])
   end
@@ -60,4 +74,7 @@ class ThemeController < ApplicationController
     render "index"
   end
 
+  def do_maintenance
+    RmtTheme.do_maintenance
+  end
 end

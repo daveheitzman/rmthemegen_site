@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510225342) do
+ActiveRecord::Schema.define(:version => 20110511202425) do
 
   create_table "rmt_themes", :force => true do |t|
     t.string   "theme_name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110510225342) do
     t.integer  "upvotes"
     t.integer  "downvotes"
     t.integer  "bg_color_style",   :default => 0
+    t.string   "file_path",        :default => "/tmp"
   end
 
 end

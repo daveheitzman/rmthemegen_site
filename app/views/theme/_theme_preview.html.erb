@@ -1,6 +1,20 @@
 <%= raw flash[:notice] if flash[:notice] %>
-<p>Dark Themes</p>
+<div class = "theme_row">
+<%= link_to "Dark Themes", "theme/show_colortype_page/dark" %>
 <% 3.times do |index| %>
 <%= raw theme_to_html(@dark_themes[index]) %>
 <% end %>
+</div>
+<div class = "theme_row">
+<%= link_to "Light Themes", "theme/show_colortype_page/light" %>
+<% 3.times do |index| %>
+<%= raw theme_to_html(@light_themes[index]) %>
+<% end %>
+</div>
+<div class = "theme_row">
+<%= link_to "Color Themes", "theme/show_colortype_page/color" %>
+<% 3.times do |index| %>
+<%= raw theme_to_html(@color_themes[index]) %>
+<% end %>
 
+</div>

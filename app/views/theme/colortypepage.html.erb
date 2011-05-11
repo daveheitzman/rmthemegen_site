@@ -1,0 +1,14 @@
+<p> colortypepage</p>
+
+<% if @dark_themes then %>
+<%=raw render 'dark_theme_page' %>
+
+<% elsif @color_themes then %>
+
+<%= render 'color_theme_page' %>
+<%  elsif @light_themes then %>
+<%= render 'light_theme_page' %>
+<%  end %>
+
+
+
