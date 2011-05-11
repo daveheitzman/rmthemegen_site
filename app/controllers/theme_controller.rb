@@ -1,11 +1,12 @@
 class ThemeController < ApplicationController
-
-
+  before_filter :make_banner
+  
+  
   def make_banner
     #makes a banner with the regular greenish background, but random foreground colors for each letter. 
       @bgcol = "728a90"
       @rc= RMThemeGen::ThemeGenerator.new
-      '<div id="container"><div id="banner"  >'+
+      @ban = '<div id="container"><div id="banner"  >'+
           '<div id="bannertext">'+
             '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.30)+';">r</span>'+
             '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.30)+';">m</span>'+
@@ -26,32 +27,36 @@ class ThemeController < ApplicationController
   end
   
   def index
-    @ban = make_banner
     RmtTheme.do_maintenance
-    flash[:notice] = "do maintenance theme called"
+    flash[:notice] = ''
+   # flash[:notice] = "do maintenance theme called"
     #get a theme and display
-    @theme1 = RmtTheme.all.shuffle!.first
+   # @theme1 = RmtTheme.all.shuffle!.first
+    @dark_themes = RmtTheme.where('bg_color_style = ?',0)
+    @light_themes = RmtTheme.where('bg_color_style = ?',1)
+    @colorful_themes = RmtTheme.where('bg_color_style = ?',2)
   end
 
   def download
     theme = RmtTheme.find(params[:id])
-    
   end
 
   def click
   end
 
   def upvote
-    @ban = make_banner
-    @theme1 = RmtTheme.find(params[:id])
+    @theme1 = RmtTheme.find(params[:id] )
+    @theme1.upvotes= @theme1.upvotes + 1
+    @theme1.save
     flash[:notice] = params[:id].to_s+" was upvoted"
     render "index"
   end
 
   def downvote
-    @ban = make_banner
     @theme1 = RmtTheme.find(params[:id])
-    flash[:notice] = params[:id].to_s+" was downvoted"
+    @theme1.downvotes= @theme1.downvotes + 1
+    @theme1.save
+    flash[:notice]= params[:id].to_s+" was downvoted"
     render "index"
   end
 
