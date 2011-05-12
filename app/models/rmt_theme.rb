@@ -5,12 +5,23 @@ class RmtTheme < ActiveRecord::Base
   def self.do_maintenance
     #if fewer than 100 themes exist it ensures 100 exist
     #get list of category #'s in case there's more than just 0,1,2
-    @bg_styles.each do |style|
-      while ( where("`bg_color_style`=?", style).size < @minimum_themes )
-        create_theme(:bg_color_style => style)
+
+    while ( where("`bg_color_style`=?", 0).size < @minimum_themes )
+      @bg_styles.each do |style|
+      create_theme(:bg_color_style => style)
       end
     end
     #this deletes the least popular 10% and refills.
+      #not implemented yet
+    
+    #this reranks all of them based on popularity score
+    @all = all :order=>"pop_score desc"
+    ActiveRecord::Base.transaction do
+      @all.each_index do |i|
+        @all[i].rank = i+1
+        @all[i].save
+      end
+    end
   end
 
   def self.create_theme(newopts={})
@@ -19,16 +30,8 @@ class RmtTheme < ActiveRecord::Base
     if !File.exists?(opts[:outputdir])
       Dir.mkdir(File.dirname(opts[:outputdir]))
     end
-
     theme_generator = RMThemeGen::ThemeGenerator.new
-#    nt = theme_generator.make_theme_file(opts[:outputdir], opts[:bg_color_style])
     nt = theme_generator.make_theme_file(dir1,opts[:bg_color_style])
-
-    
-#    nt = theme_generator.make_theme_file(opts)
-
-
-     #:usedir=>usedir,:bg_color_style=>opts[:bg_color_style])
     new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.now,:last_downloaded=>Time.now,:last_clicked=>Time.now,:rank=>0, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt) )
     new_theme_record.to_css = theme_generator.to_css
     new_theme_record.theme_name = theme_generator.schemename

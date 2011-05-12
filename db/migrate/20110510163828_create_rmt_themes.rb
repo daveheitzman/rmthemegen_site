@@ -1,13 +1,13 @@
 class CreateRmtThemes < ActiveRecord::Migration
   def self.up
     create_table :rmt_themes do |t|
-      t.string :theme_name
+      t.string :theme_name, :default=>"no_name_yet"
       t.text :to_css
-      t.integer :times_downloaded
-      t.integer :times_clicked
-      t.datetime :created_at
-      t.datetime :last_downloaded
-      t.datetime :last_clicked
+      t.integer :times_downloaded, :default =>0
+      t.integer :times_clicked, :default =>0
+      t.datetime :created_at, :default => Time.now
+      t.datetime :last_downloaded, :default => nil
+      t.datetime :last_clicked, :default => nil
       t.integer :rank, :default=>100000
       t.timestamps
     end

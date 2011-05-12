@@ -10,22 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511224749) do
+ActiveRecord::Schema.define(:version => 20110512175910) do
 
   create_table "rmt_themes", :force => true do |t|
-    t.string   "theme_name"
+    t.string   "theme_name",       :default => "no_name_yet"
     t.text     "to_css"
-    t.integer  "times_downloaded"
-    t.integer  "times_clicked"
+    t.integer  "times_downloaded", :default => 0
+    t.integer  "times_clicked",    :default => 0
     t.datetime "created_at"
     t.datetime "last_downloaded"
     t.datetime "last_clicked"
     t.integer  "rank",             :default => 100000
     t.datetime "updated_at"
-    t.integer  "upvotes"
-    t.integer  "downvotes"
+    t.integer  "upvotes",          :default => 0
+    t.integer  "downvotes",        :default => 0
     t.integer  "bg_color_style",   :default => 0
     t.text     "file_path"
+    t.integer  "pop_score",        :default => 0
   end
 
 end

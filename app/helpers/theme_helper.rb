@@ -39,7 +39,7 @@ module ThemeHelper
 </div>
 
 </div>  </div>'
-      @out += '<div class="info"> <span class="downloads">Downloads: '+theme1.times_downloaded.to_s+' Rank: 33 </span><br /><span class="toppick">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span>'  + ( link_to "Upvote", "/theme/upvote/"+(theme1.id.to_s) )+"&nbsp;&nbsp;&nbsp;"+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'  </div>    </div></div>'
+      @out += '<div class="info"> <span class="downloads">Rank: '+theme1.rank.to_s+' &nbsp;&nbsp;Downloaded:'+ theme1.times_downloaded.to_s+' </span><br /><span class="toppick">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span>'  + ( link_to "Upvote", "/theme/upvote/"+(theme1.id.to_s) )+"&nbsp;&nbsp;&nbsp;"+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'  </div>    </div></div>'
 
       end
       return @out
