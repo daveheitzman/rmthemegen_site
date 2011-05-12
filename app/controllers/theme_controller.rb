@@ -66,8 +66,7 @@ class ThemeController < ApplicationController
     populate_themes_for_display
   end
 
-  def click
-  end
+
 
   def upvote
     @theme1 = RmtTheme.find(params[:id] )
