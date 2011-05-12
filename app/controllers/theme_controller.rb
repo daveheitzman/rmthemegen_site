@@ -1,4 +1,5 @@
 class ThemeController < ApplicationController
+  @@download_to_vote_ratio = 10 # for popularity, it means 1 download is worth X upvotes or downvotes 
   before_filter :make_banner, :do_maintenance
   
   def make_banner
@@ -59,7 +60,7 @@ class ThemeController < ApplicationController
   def download
     theme = RmtTheme.find(params[:id])
     if theme.file_path
-      send_file(theme.file_path)
+      send_file(theme.file_path, :type =>"text/xml")
       theme.times_downloaded += 1
       theme.save
     end
