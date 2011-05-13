@@ -36,6 +36,7 @@ class ThemeController < ApplicationController
     @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
     @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
   end
+  
   def index
 
     flash[:notice] = ''
@@ -75,15 +76,17 @@ class ThemeController < ApplicationController
 
 
   def upvote
+    key = ( session[:session_id]+params[:id] ).to_s
 
     flash[:notice] =''
-    if true #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
+    if !session[key] #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
+      session[key] = true
       @theme1 = RmtTheme.find(params[:id] )
       @theme1.upvotes= @theme1.upvotes + 1
       @theme1.pop_score += @@upvote_points
       @theme1.save
     #  @@already_voted << (session[:session_id]+params[:id]).to_s
-    #  flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
+      flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
     end
     #flash[:notice] = params[:id].to_s+" was upvoted"
     populate_themes_for_display
@@ -92,18 +95,20 @@ class ThemeController < ApplicationController
   end
 
   def downvote
-   flash[:notice] =''
-   if true #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
+  key = ( session[:session_id]+params[:id] ).to_s
+
+  flash[:notice] =''
+  if !session[key] #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
     @theme1 = RmtTheme.find(params[:id])
     @theme1.downvotes= @theme1.downvotes + 1
     @theme1.pop_score -= @@downvote_points
     @theme1.save
 #    @@already_voted << (session[:session_id]+params[:id]).to_s
-#    flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
+    flash[:notice] = "downvoting took place"+ session[:session_id].to_s+params[:id].to_s
    end
    # flash[:notice]= params[:id].to_s+" was downvoted"
-   populate_themes_for_display
-   redirect_to env["HTTP_REFERER"]
+  populate_themes_for_display
+  redirect_to env["HTTP_REFERER"]
 #   render "index"
   end
 
