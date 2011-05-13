@@ -1,15 +1,8 @@
 
 <span class="theme_type_announce">
 
-<%=  case
-      when @dark_themes
-         'Dark Themes'
-      when @color_themes
-        'Color Themes'
-      when @light_themes
-        'Light Themes'
-     end
-%>
+<table style="width: 100%;background-color:dark-blue;padding:0;margin:0;text-align:center;"><tr><td style="text-align:center;"><%=link_to( 'Dark Themes', "/theme/show_colortype_page/dark")%></td><td style="text-align:center;background-color:yellow;"><%=link_to( 'Color Themes', "/theme/show_colortype_page/color") %></td><td style="text-align:center;background-color:#dedede;"><%=link_to( 'Light Themes', "/theme/show_colortype_page/light") %></td></tr></table>
+
 </span>
 
 
