@@ -513,7 +513,7 @@ body.two-col #container {
   overflow: hidden;
 
 }
-#bannertext {width:1020px;margin:auto;background-color:#728a90;}
+#bannertext {width:1020px;margin:auto;background-color:#728a90; }
 #headertext {
     width:1020px;
     margin:auto;
@@ -579,7 +579,7 @@ body.two-col {
 
 .content-text-right {
     z-index:2;
-   
+    float:right;
     top:2px;
     margin:0;
     width:120px;
@@ -599,14 +599,40 @@ body.two-col {
 }
 
 .pagination {
+    padding: 2px 0px 2px 0px;
     text-align:center;
-    width: 100%;
+    width: 99.5%;
     float:left;
     background-color: #489EB1;
     border: 1px solid #7F7F7F;
     color: #4f3f5f;
+    line-height: 1.5em;
+    font-size: 1.2em;
     -webkit-border-radius: 2px;
 }
+.pagination a {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -border-radius: 3px;
+
+    background-color:#3DC33D;
+    border: black 1px;
+    height: 1.3em;
+    padding: 2px;
+}
+
+.pagination a:hover {
+    color:
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -border-radius: 5px;
+    text-decoration: none;
+    background-color:#47FF47;
+    border: black 1px;
+    height: 1.3em;
+    padding: 2px;
+}
+
 
 .theme_type_announce {
     display: block;

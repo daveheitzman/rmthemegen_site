@@ -25,7 +25,7 @@ module ThemeHelper
 <div class="line"> <span class="RUBY_HEREDOC"> And now this is heredoc!</span></div>
 <div class="line"> <span class="RUBY_HEREDOC"> printIndex "Hello world again!"</span></div>
 <div class="line">  <span class="RUBY_HEREDOC_ID">FOO</span></div>
-<div class="line"> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_STRING">"<span class="RUBY_EXPR_IN_STRING">#{<span class="RUBY_GVAR">$GLOBAL_TIME <span class="RUBY_OPERATION_SIGN"> >> <span class="RUBY_REGEXP">$`<span class="RUBY_EXPR_IN_STRING">} <span class="RUBY_STRING">is <span class="RUBY_INVALID_ESCAPE_SEQUENCE">\<span class="RUBY_STRING">Z sample <span class="RUBY_ESCAPE_SEQUENCE">\"<span class="RUBY_STRING">string<span class="RUBY_ESCAPE_SEQUENCE">\"<span class="RUBY_STRING">" <span class="RUBY_OPERATION_SIGN">* <span class="RUBY_NUMBER">777<span class="RUBY_BRACKETS">)<span class="RUBY_SEMICOLON">;</div>
+<div class="line"n> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_STRING">"<span class="RUBY_EXPR_IN_STRING">#{<span class="RUBY_GVAR">$GLOBAL_TIME <span class="RUBY_OPERATION_SIGN"> >> <span class="RUBY_REGEXP">$`<span class="RUBY_EXPR_IN_STRING">} <span class="RUBY_STRING">is <span class="RUBY_INVALID_ESCAPE_SEQUENCE">\<span class="RUBY_STRING">Z sample <span class="RUBY_ESCAPE_SEQUENCE">\"<span class="RUBY_STRING">string<span class="RUBY_ESCAPE_SEQUENCE">\"<span class="RUBY_STRING">" <span class="RUBY_OPERATION_SIGN">* <span class="RUBY_NUMBER">777<span class="RUBY_BRACKETS">)<span class="RUBY_SEMICOLON">;</div>
 <div class="line">  <span class="RUBY_KEYWORD">if <span class="">(<span class="">$1 <span class="">=~ <span class="">/sample regular expression/ni)<span class="RUBY_KEYWORD"> then</div>
 <div class="line"> <span class="RUBY_KEYWORD"> begin</div>
 <div class="line">    puts %W(sample words), CONSTANT, :fooo;</div>
@@ -39,7 +39,7 @@ module ThemeHelper
 </div>
 </div>
 </div>  '
-      @out += '<div class="info"> <span class="downloads">Rank: '+theme1.rank.to_s+' &nbsp;&nbsp;Downloaded:'+ theme1.times_downloaded.to_s+' </span><br /><span class="toppick">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span>'  + ( link_to "Upvote", "/theme/upvote/"+(theme1.id.to_s) )+"&nbsp;&nbsp;&nbsp;"+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'  </div>    </div></div>'
+      @out += '<div class="info"><table><tr><td><span class="downloads">Popularity: '+theme1.rank.to_s+'&nbsp;&nbsp;&nbsp;Downloads:'+ theme1.times_downloaded.to_s+'</span></td><td><span class="upvote_button">'  + ( link_to "Upvote", "/theme/upvote/"+(theme1.id.to_s) )+'</span></td></tr><tr><td><span class="download_button">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span></td><td><span class="downvote_button">'+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'</span></td></tr></table>  </div>    </div></div>'
 
       end
       return @out

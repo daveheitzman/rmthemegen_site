@@ -78,10 +78,10 @@ a {
 	text-decoration: none;
 	color: #5f88a2;
 }
-
+/*
 a:hover {
 	text-decoration: underline;
-}
+}*/
 
 .setting {
 	float: left;
@@ -399,8 +399,8 @@ a.button-plugin img {
 
 .theme {
     float:left;
-   	width: 286px;
-	margin: 1px 4px 5px 4px;
+   	width: 288px;
+	margin: 3px 5px 3px 6px;
     padding: none;
 }
 
@@ -436,7 +436,7 @@ a.button-plugin img {
 	padding: 6px 8px;
 	font-size: 13px;
 }
-
+/*
 .theme .info a {
 	color: black;
 	text-decoration: underline;
@@ -446,7 +446,7 @@ a.button-plugin img {
 	color: #666;
 	font-size: 11px;
 }
-
+*/
 #footer {
 	clear: both;
 	text-align: center;
@@ -701,7 +701,33 @@ table.data td.icon {
 	padding-right: 0px;
 }
 
-.toppick {
+.download_button {
+	color: #3b4919;
+	border: 1px solid #92a959;
+	background-color: #c8e08f;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-border-radius: 2px;
+	font-size: 10px;
+	padding: 3px 5px;
+	font-weight: bold;
+	margin-right: 2px;
+}
+.upvote_button a {
+    text-decoration:none;
+	color: #3b4919;
+	border: 1px solid #92a959;
+	background-color: #c8e08f;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-border-radius: 2px;
+	font-size: 10px;
+	padding: 3px 5px;
+	font-weight: bold;
+	margin-right: 2px;
+}
+.downvote_button a {
+    text-decoration:none;
 	color: #3b4919;
 	border: 1px solid #92a959;
 	background-color: #c8e08f;

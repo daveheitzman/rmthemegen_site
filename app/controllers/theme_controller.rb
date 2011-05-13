@@ -87,7 +87,8 @@ class ThemeController < ApplicationController
     end
     #flash[:notice] = params[:id].to_s+" was upvoted"
     populate_themes_for_display
-    render "index"
+    redirect_to env["HTTP_REFERER"]
+    #render "index"
   end
 
   def downvote
@@ -102,7 +103,8 @@ class ThemeController < ApplicationController
    end
    # flash[:notice]= params[:id].to_s+" was downvoted"
    populate_themes_for_display
-   render "index"
+   redirect_to env["HTTP_REFERER"]
+#   render "index"
   end
 
   def do_maintenance
