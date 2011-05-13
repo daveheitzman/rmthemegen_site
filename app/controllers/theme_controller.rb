@@ -71,6 +71,7 @@ class ThemeController < ApplicationController
       theme.save
     end
     populate_themes_for_display
+    RmtTheme.rerank
   end
 
 
@@ -89,6 +90,7 @@ class ThemeController < ApplicationController
       flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
     end
     #flash[:notice] = params[:id].to_s+" was upvoted"
+    RmtTheme.rerank
     populate_themes_for_display
     redirect_to env["HTTP_REFERER"]
     #render "index"
@@ -107,6 +109,7 @@ class ThemeController < ApplicationController
     flash[:notice] = "downvoting took place"+ session[:session_id].to_s+params[:id].to_s
    end
    # flash[:notice]= params[:id].to_s+" was downvoted"
+  RmtTheme.rerank
   populate_themes_for_display
   redirect_to env["HTTP_REFERER"]
 #   render "index"

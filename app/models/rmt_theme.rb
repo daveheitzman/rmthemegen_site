@@ -19,6 +19,10 @@ class RmtTheme < ActiveRecord::Base
     #this deletes the least popular 10% and refills.
       #not implemented yet
     
+
+  end
+
+  def self.rerank
     #this reranks all of them based on popularity score
     @all = all :order=>"pop_score desc"
     ActiveRecord::Base.transaction do
@@ -27,6 +31,7 @@ class RmtTheme < ActiveRecord::Base
         @all[i].save
       end
     end
+
   end
 
   def self.create_theme(newopts={})

@@ -11,11 +11,12 @@
 <%=raw will_paginate @dark_themes  %>
   <%=raw render 'dark_theme_page'%>
 <%=raw will_paginate @dark_themes  %>
-
 <% elsif @color_themes then %>
-<%=raw render 'color_theme_page' %>
-  <%=raw will_paginate @color_themes  %>
+<%=raw will_paginate @color_themes  %>
+    <%=raw render 'color_theme_page' %>
+<%=raw will_paginate @color_themes  %>
 <%  elsif @light_themes then %>
-<%=raw render 'light_theme_page' %>
-  <%=raw will_paginate @light_themes  %>
+<%=raw will_paginate @light_themes  %>
+    <%=raw render 'light_theme_page' %>
+<%=raw will_paginate @light_themes  %>
 <%  end %>
