@@ -568,20 +568,25 @@ body.two-col {
     width:100%;
     background-color: #8E9CA1;
 }
-#content-text-left {
+
+.content-text-left {
+    z-index:2;
+   float:left;
     margin:0;
-    width:600px;
-    background-color:yellow;
-    float:left;
+    width:900px;
 
     }
-#content-text-right {
-    float:left;
+
+.content-text-right {
+    z-index:2;
+   
     top:2px;
     margin:0;
-    width:300px;
+    width:120px;
     }
-#content-container {
+
+.content-container {
+    z-index: 1;
     overflow-x: hidden;
     margin: 1px auto 1px auto;
     width: 1020px;
@@ -591,4 +596,41 @@ body.two-col {
 /* line 138, ../../../../../../../usr/local/lib/ruby/gems/1.9.1/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #content {
    overflow-x: hidden;
+}
+
+.pagination {
+    text-align:center;
+    width: 100%;
+    float:left;
+    background-color: #489EB1;
+    border: 1px solid #7F7F7F;
+    color: #4f3f5f;
+    -webkit-border-radius: 2px;
+}
+
+.theme_type_announce {
+    display: block;
+	background-color: #6DBDF3;
+	border: 1px solid #7F7F7F;
+	color: #4f3f5f;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-border-radius: 2px;
+	font-size: 24px;
+	padding: 2px 6px;
+	font-weight: bold;
+	margin-right: 2px;
+}
+.theme_type_announce_small {
+    display: block;
+	background-color: #6DBDF3;
+	border: 1px solid #7F7F7F;
+	color: #4f3f5f;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-border-radius: 2px;
+	font-size: 17px;
+	padding: 2px 6px;
+	font-weight: bold;
+	margin-right: 2px;
 }

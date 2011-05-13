@@ -1,2 +1,5 @@
-<p>dark themes</p>
-<%=  %>
+
+
+<% @dark_themes.each_index do |index| %>
+<%= raw theme_to_html(@dark_themes[index])%>
+<% end %>

@@ -1,7 +1,13 @@
+require 'rubygems'
+require 'will_paginate'
+
 class RmtTheme < ActiveRecord::Base
   @minimum_themes = 25 #per category
   @bg_styles = [0,1,2]
-  
+  cattr_reader :per_page
+  @@per_page = 12
+
+
   def self.do_maintenance
     #if fewer than 100 themes exist it ensures 100 exist
     #get list of category #'s in case there's more than just 0,1,2
@@ -41,5 +47,7 @@ class RmtTheme < ActiveRecord::Base
     # populate CSS into database
     # put in other db stuff 
   end
+
+
 
 end

@@ -1,2 +1,4 @@
-<p>light themes</p>
-<%=  %>
+
+<% @light_themes.each_index do |index| %>
+<%= raw theme_to_html(@light_themes[index])%>
+<% end %>

@@ -1,2 +1,4 @@
-<p>color themes</p>
-<%=  %>
+
+<% @color_themes.each_index do |index| %>
+<%= raw theme_to_html(@color_themes[index])%>
+<% end %>

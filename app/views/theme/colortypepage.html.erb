@@ -1,14 +1,28 @@
-<p> colortypepage</p>
+
+<span class="theme_type_announce">
+
+<%=  case
+      when @dark_themes
+         'Dark Themes'
+      when @color_themes
+        'Color Themes'
+      when @light_themes
+        'Light Themes'
+     end
+%>
+</span>
+
+
 
 <% if @dark_themes then %>
-<%=raw render 'dark_theme_page' %>
+
+  <%=raw render 'dark_theme_page'%>
+<%=raw will_paginate @dark_themes  %>
 
 <% elsif @color_themes then %>
-
-<%= render 'color_theme_page' %>
+<%=raw render 'color_theme_page' %>
+  <%=raw will_paginate @color_themes  %>
 <%  elsif @light_themes then %>
-<%= render 'light_theme_page' %>
+<%=raw render 'light_theme_page' %>
+  <%=raw will_paginate @light_themes  %>
 <%  end %>
-
-
-

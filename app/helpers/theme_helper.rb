@@ -3,7 +3,7 @@ module ThemeHelper
     def theme_to_html(theme1=nil)
       @out = '<p>null theme</p>'
       if theme1
-      @out = theme1.to_css+'<div class="theme " > <div class="preview "> <div id="preview-html "><div class="editor  " >"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
+      @out = theme1.to_css+'<div class="theme"> <div class="preview "> <div id="preview-html "><div class="editor  " >"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div>'
       @out += '<div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span></div>
    <div class="line"></div>
@@ -37,8 +37,8 @@ module ThemeHelper
 <div class="line">end</div>
 
 </div>
-
-</div>  </div>'
+</div>
+</div>  '
       @out += '<div class="info"> <span class="downloads">Rank: '+theme1.rank.to_s+' &nbsp;&nbsp;Downloaded:'+ theme1.times_downloaded.to_s+' </span><br /><span class="toppick">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span>'  + ( link_to "Upvote", "/theme/upvote/"+(theme1.id.to_s) )+"&nbsp;&nbsp;&nbsp;"+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'  </div>    </div></div>'
 
       end

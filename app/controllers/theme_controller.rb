@@ -2,6 +2,7 @@ class ThemeController < ApplicationController
   @@download_to_vote_ratio = 4  # for popularity, it means 1 download is worth X upvotes or downvotes
   @@upvote_points = 3
   @@downvote_points = 1
+
   before_filter :make_banner, :do_maintenance
   
   def make_banner
@@ -31,12 +32,9 @@ class ThemeController < ApplicationController
 
 
   def populate_themes_for_display
-#    @dark_themes = RmtTheme.where(['bg_color_style = ?',0], :conditions=>"order by rank")
-    @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank)
-#    @dark_themes = RmtTheme.where(['bg_color_style = ?',0], :conditions=>"order by rank")
-    @light_themes = RmtTheme.where(['bg_color_style = ?',1])
-    @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank)
-    @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank)
+    @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank).shuffle
+    @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
+    @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
   end
   def index
 
@@ -51,13 +49,14 @@ class ThemeController < ApplicationController
     @dark_themes = nil
     @light_themes= nil
     @color_themes= nil
+    which_page = params[:page] || 1
     case (params[:type])
       when "dark"
-      @dark_themes = RmtTheme.where('bg_color_style = ?',0)
+      @dark_themes = RmtTheme.paginate :page => which_page, :conditions=>['bg_color_style = ?',0], :order => 'rank asc'
       when "color"
-      @color_themes = RmtTheme.where('bg_color_style = ?',2)
+      @color_themes = RmtTheme.paginate :page => which_page, :conditions=>['bg_color_style = ?',2], :order => 'rank asc'
       when "light"
-      @light_themes = RmtTheme.where('bg_color_style = ?',1)
+      @light_themes = RmtTheme.paginate :page => which_page, :conditions=>['bg_color_style = ?',1], :order => 'rank asc'
     end
     render "theme/colortypepage"
   end
@@ -76,24 +75,34 @@ class ThemeController < ApplicationController
 
 
   def upvote
-    @theme1 = RmtTheme.find(params[:id] )
-    @theme1.upvotes= @theme1.upvotes + 1
-    @theme1.pop_score += @@upvote_points
-    @theme1.save
-    flash[:notice] = params[:id].to_s+" was upvoted"
 
+    flash[:notice] =''
+    if true #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
+      @theme1 = RmtTheme.find(params[:id] )
+      @theme1.upvotes= @theme1.upvotes + 1
+      @theme1.pop_score += @@upvote_points
+      @theme1.save
+    #  @@already_voted << (session[:session_id]+params[:id]).to_s
+    #  flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
+    end
+    #flash[:notice] = params[:id].to_s+" was upvoted"
     populate_themes_for_display
     render "index"
   end
 
   def downvote
+   flash[:notice] =''
+   if true #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
     @theme1 = RmtTheme.find(params[:id])
     @theme1.downvotes= @theme1.downvotes + 1
     @theme1.pop_score -= @@downvote_points
     @theme1.save
-    flash[:notice]= params[:id].to_s+" was downvoted"
-    populate_themes_for_display
-    render "index"
+#    @@already_voted << (session[:session_id]+params[:id]).to_s
+#    flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
+   end
+   # flash[:notice]= params[:id].to_s+" was downvoted"
+   populate_themes_for_display
+   render "index"
   end
 
   def do_maintenance

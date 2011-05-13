@@ -4,6 +4,7 @@ gem 'rails', '3.0.3'
 gem 'color'
 gem 'xml-simple'
 gem 'rmthemegen'
+gem 'will_paginate', '3.0.pre2'
 
 gem 'mysql'
 # Bundle edge Rails instead:
