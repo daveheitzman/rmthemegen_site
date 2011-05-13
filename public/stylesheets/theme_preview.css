@@ -400,8 +400,8 @@ a.button-plugin img {
 .theme {
     float:left;
    	width: 288px;
-	margin: 3px 5px 3px 6px;
-    padding: none;
+	margin: 2px 0px 2px 0px;
+    padding: 0px 2px 0px 2px;
 }
 
 .theme_row {
@@ -412,10 +412,9 @@ a.button-plugin img {
 .theme .preview {
 	display: block;
 	background-color: #FFF;
+
+	padding: 0px 1px 0px 1px;
 	border: 1px solid #DDD;
-	padding: 0px 0px 0px 0px;
-	border: 1px solid #DDD;
-    margin:0;
 }
 
 .theme .preview-html {
@@ -438,6 +437,14 @@ a.button-plugin img {
 }
 .theme .info table {
     margin: 2px 2px 2px 2px;
+    width: 100%;
+    padding: 4px 0px 0px 0px;
+}
+.theme .info table tr td {
+    
+    margin: 2px 2px 2px 2px;
+    width: 100%;
+    padding: 4px 0px 0px 0px;
 }
 /*
 .theme .info a {
@@ -703,8 +710,10 @@ table.data td.icon {
 	background-color: #EEE;
 	padding-right: 0px;
 }
-
-.download_button {
+.download_button a:hover {
+   color:white;
+}
+.download_button a{
 	color: #3b4919;
 	border: 1px solid #92a959;
 	background-color: #c8e08f;

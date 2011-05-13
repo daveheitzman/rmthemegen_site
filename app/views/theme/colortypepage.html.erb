@@ -1,22 +1,29 @@
 
-<span class="theme_type_announce">
+<%  @the_themes = @dark_themes || @light_themes || @color_themes
+    
+%>
 
-<table style="width: 100%;background-color:dark-blue;padding:0;margin:0;text-align:center;"><tr><td style="text-align:center;"><%=link_to( 'Dark Themes', "/theme/show_colortype_page/dark")%></td><td style="text-align:center;background-color:yellow;"><%=link_to( 'Color Themes', "/theme/show_colortype_page/color") %></td><td style="text-align:center;background-color:#dedede;"><%=link_to( 'Light Themes', "/theme/show_colortype_page/light") %></td></tr></table>
 
+<%=  raw will_paginate @the_themes  %>
+
+
+<span class="theme_type_announce" style="width:100%;padding:0;margin:0;">
+<table style="width:100%;padding:0;margin:0;">
+ <%= raw bg_color_types_menu %>
+<% bgcolor = case @the_themes[0].bg_color_style
+        when 0; "black"
+        when 1; "#dedede"
+        when 2; "yellow"
+   end
+   @out=''
+   @the_themes.each_index do |ind1|
+   @out += '<td style="background-color:'+bgcolor+';"><div style="width:100%;height:100%;margin:0 0 0 4px;">'+ theme_to_html(@the_themes[ind1])+'</div></td>'
+   if ((ind1+1) % 3) == 0 then @out = "<tr>"+@out+"</tr>" end
+ end %>
+<%= raw @out %>
+
+</tr>
+</table>
 </span>
 
-
-
-<% if @dark_themes then %>
-<%=raw will_paginate @dark_themes  %>
-  <%=raw render 'dark_theme_page'%>
-<%=raw will_paginate @dark_themes  %>
-<% elsif @color_themes then %>
-<%=raw will_paginate @color_themes  %>
-    <%=raw render 'color_theme_page' %>
-<%=raw will_paginate @color_themes  %>
-<%  elsif @light_themes then %>
-<%=raw will_paginate @light_themes  %>
-    <%=raw render 'light_theme_page' %>
-<%=raw will_paginate @light_themes  %>
-<%  end %>
+<%=  raw will_paginate @the_themes  %>

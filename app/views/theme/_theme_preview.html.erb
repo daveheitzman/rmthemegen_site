@@ -1,29 +1,27 @@
-
-
 <%= raw flash[:notice] if flash[:notice] %>
-<div class = "theme_row">
-<div  class="theme_type_announce_small">
-  <%= link_to "Dark Themes", "/theme/show_colortype_page/dark" %>
-</div>
-<% 3.times do |index| %>
-<%= raw theme_to_html(@dark_themes[index]) %>
-<% end %>
-</div>
-<div class = "theme_row" >
-<div class="theme_type_announce_small" >
-  <%= link_to "Light Themes", "/theme/show_colortype_page/light" %>
-</div>
-<% 3.times do |index| %>
-<%= raw theme_to_html(@light_themes[index]) %>
-<% end %>
-</div>
+<span class="theme_type_announce" style="width:100%;padding:0;margin:0;">
 
-<div class = "theme_row">
-<div class="theme_type_announce_small" >
-  <%= link_to "Color Themes", "/theme/show_colortype_page/color" %>
-</div>
-<% 3.times do |index| %>
-<%= raw theme_to_html(@color_themes[index]) %>
-<% end %>
+<table style="width:100%;padding:0;margin:0;">
 
-</div>
+
+<%= raw bg_color_types_menu %>
+<tr>
+<td style="background-color:black;"><div style="width:100%;height:100%;margin:0 0 0 4px;">
+  <%= raw theme_to_html(@dark_themes[0]) %></div></td>
+<td style="background-color:yellow;"><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@color_themes[0]) %></div></td>
+<td  style="background-color:#dedede;"><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@light_themes[0]) %></div></td>
+</tr>
+  <%= raw bg_color_types_menu %>
+  <tr>
+<td style="background-color:black;"><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@dark_themes[2]) %></div></td>
+<td style="background-color:yellow;" ><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@color_themes[2]) %></div></td>
+<td  style="background-color:#dedede;"><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@light_themes[2]) %></div></td>
+</tr>
+<%= raw bg_color_types_menu %>
+  <tr>
+<td style="background-color:black;"><div style="width:100%;height:100%;margin:0 0 0 4px;">  <%= raw theme_to_html(@dark_themes[1]) %></div></td>
+  <td  style="background-color:yellow;"><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@color_themes[1]) %></div></td>
+<td style="background-color:#dedede;"><div style="width:100%;height:100%;margin:0 0 0 4px;"><%= raw theme_to_html(@light_themes[1]) %></div></td>
+</tr>
+</table>
+</span>

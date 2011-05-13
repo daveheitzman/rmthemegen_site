@@ -3,7 +3,17 @@ module ThemeHelper
     def theme_to_html(theme1=nil)
       @out = '<p>null theme</p>'
       if theme1
-      @out = theme1.to_css+'<div class="theme"> <div class="preview "> <div id="preview-html "><div class="editor  " >"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
+        editor_links_to = case theme1.bg_color_style
+        when 0
+          '/theme/show_colortype_page/dark'
+        when 1
+          '/theme/show_colortype_page/light'
+        when 2
+          '/theme/show_colortype_page/color'
+      end
+
+
+      @out = theme1.to_css+'<div class="theme"> <div class="preview "> <div id="preview-html "><a href="'+editor_links_to+'"><div class="editor  " >"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div>'
       @out += '<div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span></div>
    <div class="line"></div>
@@ -35,14 +45,12 @@ module ThemeHelper
 <div class="line">  \\\\\\\\\\\\\\\\\\\\</div>
 <div class="line">  end</div>
 <div class="line">end</div>
-
-</div>
-</div>
-</div>  '
+</a></div></div></div>  '
       @out += '<div class="info"><table><tr><td><span class="downloads">Popularity: '+theme1.rank.to_s+'&nbsp;&nbsp;&nbsp;Downloads:'+ theme1.times_downloaded.to_s+'</span></td><td><span class="upvote_button">'  + ( link_to (raw "&nbsp;&nbsp;Upvote&nbsp;&nbsp;"), "/theme/upvote/"+(theme1.id.to_s) )+'</span></td></tr><tr><td><span class="download_button">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span></td><td><span class="downvote_button">'+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'</span></td></tr></table>  </div>    </div></div>'
 
       end
       return @out
+
     end
 
     def nice_name(theme_name=nil)
@@ -54,5 +62,27 @@ module ThemeHelper
       end
     end
 
+    def colorize_string(str1)
+      @rc= RMThemeGen::ThemeGenerator.new
+      out = ''
+      str1.size.each do |index|
+      
+      end
+    end
+
+    def bg_color_types_menu
+
+  '<tr>
+    <td style="background-color:black;color:white;">
+      <a href="/theme/show_colortype_page/dark"><div style="text-align:center;width:100%;height:100%;">Dark Themes</div></a></td>
+
+    <td style="text-align:center;background-color:yellow;color:black;">
+      <a href="/theme/show_colortype_page/color">
+        <div style="width:100%;height:100%;">Color Themes</div></a></td>
+
+    <td style="text-align:center;background-color:#dedede;color:black;">
+      <a href="/theme/show_colortype_page/light">
+        <div style="width:100%;height:100%;">Light Themes</div></a></td></tr>'
+    end
 
 end
