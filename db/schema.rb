@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110512175910) do
+ActiveRecord::Schema.define(:version => 20110517165542) do
+
+  create_table "newsfeeds", :force => true do |t|
+    t.integer  "theme_id",   :default => 0
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rmt_themes", :force => true do |t|
     t.string   "theme_name",       :default => "no_name_yet"

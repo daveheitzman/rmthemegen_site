@@ -1,0 +1,7 @@
+<div><h1> newsfeed</h1></div>
+<% if @news
+    @news.each do |n|
+    %>
+   <div class="newsfeed_line"> <%=raw n.message + " at " +n.updated_at.to_time.to_formatted_s(:long_ordinal)
+   %></div>
+<% end   end %>
