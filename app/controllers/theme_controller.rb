@@ -34,9 +34,9 @@ class ThemeController < ApplicationController
 
 
   def populate_themes_for_display
-    @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank, :limit=>5).shuffle
-    @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank, :limit=>5).shuffle
-    @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank, :limit=>5).shuffle
+    @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank).shuffle
+    @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
+    @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
   end
   
   def index
