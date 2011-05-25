@@ -1,0 +1,13 @@
+<div ><%=raw  theme_to_html(@theme1)+ theme_to_html(@theme1)+ theme_to_html(@theme1) %> </div>
+<div ><% form_for @new_comment do |c| %>
+     <div> <%= c.label :comment, "Add new comment" %></div>
+     <div> <%= c.text_area :comment, :cols => 40, :rows=>5 %></div>
+     <div> <%= c.text_field :theme_id, :hidden=>true%></div>
+     <div> <%= c.submit "Submit" %></div>
+    <% end %>
+</div>
+<div class="comments_header">Previous comments</div>
+<div class="comments_area"><% @previous_comments.each do |com| %>
+        <%= com.comment %>
+     <% end %>
+</div>

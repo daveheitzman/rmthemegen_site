@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517165542) do
+ActiveRecord::Schema.define(:version => 20110518194844) do
 
   create_table "newsfeeds", :force => true do |t|
     t.integer  "theme_id",   :default => 0
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(:version => 20110517165542) do
     t.integer  "bg_color_style",   :default => 0
     t.text     "file_path"
     t.integer  "pop_score",        :default => 0
+  end
+
+  create_table "theme_comments", :force => true do |t|
+    t.text     "comment"
+    t.integer  "theme_id",           :default => 0
+    t.integer  "number_of_likes",    :default => 0
+    t.integer  "number_of_dislikes", :default => 0
+    t.integer  "user_id",            :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

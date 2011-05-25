@@ -82,7 +82,12 @@ class ThemeController < ApplicationController
   end
 
 
-
+  def show
+    @theme1=RmtTheme.find(params[:id])
+    @new_comment=ThemeComment.new(:theme_id=>params[:id])
+    @previous_comments = @theme1.theme_comments
+  end
+  
   def upvote
     key = ( session[:session_id]+params[:id] ).to_s
 

@@ -8,6 +8,7 @@ class RmtTheme < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 12
   has_many :newsfeeds, :foreign_key => :theme_id
+  has_many :theme_comments, :foreign_key => :theme_id
 
   def self.do_maintenance
 
@@ -53,7 +54,7 @@ class RmtTheme < ActiveRecord::Base
     new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.now,:last_downloaded=>Time.now,:last_clicked=>Time.now,:rank=>0, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt) )
     #File.delete(File.expand_path(nt)) if File.exists?(File.expand_path(nt))
     new_theme_record.to_css = theme_generator.to_css
-    new_theme_record.theme_name = theme_generator.schemename
+    new_theme_record.theme_name = theme_generator.themename
     new_theme_record.bg_color_style = opts[:bg_color_style]
     new_theme_record.save
     new_theme_record.newsfeeds << Newsfeed.create(:message =>"New #{new_theme_record.style_pretty} theme: '"+new_theme_record.nice_name + "' created")

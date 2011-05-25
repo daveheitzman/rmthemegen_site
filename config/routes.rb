@@ -49,6 +49,8 @@ AptifugeCom::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "theme#index"
+  resources :theme
+
   match 'theme/upvote/:id' => 'theme#upvote'
   match 'theme/downvote/:id' => 'theme#downvote'
   match 'theme/download/:id' => "theme#download"
@@ -57,6 +59,7 @@ AptifugeCom::Application.routes.draw do
     get 'show_colortype_page/:type'  => "theme#show_colortype_page", :on=>:collection
   end
 
+  resources :theme_comments
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
