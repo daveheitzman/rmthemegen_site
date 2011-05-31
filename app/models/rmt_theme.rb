@@ -2,6 +2,7 @@ require 'rubygems'
 require 'will_paginate'
 
 class RmtTheme < ActiveRecord::Base
+  
   @minimum_themes = 500 # total across all categories
   if ENV["RAILS_ENV"]=="development" then @minimum_themes= 25 end
   @bg_styles = [0,1,2]
@@ -13,14 +14,14 @@ class RmtTheme < ActiveRecord::Base
   def self.do_maintenance
 
     #this deletes the least popular XX% and refills.
-      #not implemented yet
+      
     lowest_ranked = find( :all, :order=>"`rank` desc, `created_at` asc ",  :limit=>1)[0]
     #delete file from disk
     if lowest_ranked
       File.delete(lowest_ranked.file_path) if File.exists?(lowest_ranked.file_path)
-      lowest_ranked.newsfeeds << Newsfeed.create(:message =>"#{lowest_ranked.style_pretty} theme '"+ lowest_ranked.nice_name+"', ranked #{lowest_ranked.rank} has been deleted")
+      lowest_ranked.newsfeeds << Newsfeed.create(:message =>"#{lowest_ranked.style_pretty} theme '"+ lowest_ranked.nice_name+"', ranked #{lowest_ranked.rank} deleted")
       lowest_ranked.delete
-        #get list of category #'s in case there's more than just 0,1,2
+        
     end
     
     while ( where("`bg_color_style`=?", 0).size < @minimum_themes )
@@ -57,7 +58,7 @@ class RmtTheme < ActiveRecord::Base
     new_theme_record.theme_name = theme_generator.themename
     new_theme_record.bg_color_style = opts[:bg_color_style]
     new_theme_record.save
-    new_theme_record.newsfeeds << Newsfeed.create(:message =>"New #{new_theme_record.style_pretty} theme: '"+new_theme_record.nice_name + "' created")
+    new_theme_record.newsfeeds << Newsfeed.create(:message=>new_theme_record.style_pretty+" theme '"+"<a href='link goes here'>"+ new_theme_record.nice_name+"'</a> created")
     new_theme_record.save
     # create theme (ie save file)
     # populate CSS into database

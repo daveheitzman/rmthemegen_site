@@ -15,7 +15,7 @@ module ThemeHelper
         editor_links_to += theme1.id.to_s
         editor_links_to = theme_path theme1.id
 
-      @out = theme1.to_css+'<div class="theme"> <div class="preview "> <div id="preview-html "><a href="'+editor_links_to+'"><div class="editor  " >"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
+      @out = theme1.to_css+'<div class="theme"> <div class="preview "> <div id="preview-html "><a href="'+editor_links_to+'"><div class="editor">"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div>'
       @out += '<div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span></div>
    <div class="line"></div>

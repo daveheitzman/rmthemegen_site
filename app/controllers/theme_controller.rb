@@ -66,14 +66,16 @@ class ThemeController < ApplicationController
   end
   
   def download
-    theme = RmtTheme.find(params[:id])
-    if theme.file_path
-      send_file(theme.file_path)
-      theme.times_downloaded += 1
-      theme.pop_score += @@download_to_vote_ratio*@@upvote_points
-      theme.save
-      theme.newsfeeds << Newsfeed.create(:message =>"Theme "+theme.nice_name()+" was downloaded")
-      theme.save
+    @theme1 = RmtTheme.find(params[:id])
+    if @theme1.file_path
+      send_file(@theme1.file_path)
+      @theme1.times_downloaded += 1
+      @theme1.pop_score += @@download_to_vote_ratio*@@upvote_points
+      @theme1.save
+      msg = "#{@theme1.style_pretty} theme <a href='/theme/#{@theme1.id}'>'#{@theme1.nice_name}'</a> was downloaded"
+      msg[0]=msg[0,1].upcase
+      @theme1.newsfeeds << Newsfeed.create(:message=>msg)
+      @theme1.save
     end
     do_maintenance
     populate_themes_for_display
@@ -90,25 +92,22 @@ class ThemeController < ApplicationController
   
   def upvote
     key = ( session[:session_id]+params[:id] ).to_s
-
     flash[:notice] =''
-    if !session[key] #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
+    if !session[key] 
       session[key] = true
       @theme1 = RmtTheme.find(params[:id] )
       @theme1.upvotes= @theme1.upvotes + 1
       @theme1.pop_score += @@upvote_points
-      @theme1.newsfeeds << Newsfeed.create(:message=>"Theme '"+@theme1.nice_name+"' received 1 upvote")
+      msg = "#{@theme1.style_pretty} theme <a href='/theme/#{@theme1.id}'>'#{@theme1.nice_name}'</a> received 1 upvote"
+      msg[0]=msg[0,1].upcase
+      @theme1.newsfeeds << Newsfeed.create(:message=>msg)
       @theme1.save
-    #  @@already_voted << (session[:session_id]+params[:id]).to_s
-    #  flash[:notice] = "upvoting took place"+ session[:session_id].to_s+params[:id].to_s
     end
-    #flash[:notice] = params[:id].to_s+" was upvoted"
     do_maintenance
     RmtTheme.rerank
     populate_themes_for_display
     get_news
     redirect_to env["HTTP_REFERER"]
-    #render "index"
   end
 
   def downvote
@@ -119,19 +118,16 @@ class ThemeController < ApplicationController
     @theme1 = RmtTheme.find(params[:id])
     @theme1.downvotes= @theme1.downvotes + 1
     @theme1.pop_score -= @@downvote_points
-    @theme1.newsfeeds << Newsfeed.create(:message=>"Theme '"+@theme1.nice_name+"' received 1 downvote")
+    msg = "#{@theme1.style_pretty} theme <a href='/theme/#{@theme1.id}'>'#{@theme1.nice_name}'</a> received 1 downvote"
+    msg[0]=msg[0,1].upcase
+    @theme1.newsfeeds << Newsfeed.create(:message=>msg)
     @theme1.save
-#    @@already_voted << (session[:session_id]+params[:id]).to_s
-#    flash[:notice] = "downvoting took place"+ session[:session_id].to_s+params[:id].to_s
    end
-   # flash[:notice]= params[:id].to_s+" was downvoted"
-
   do_maintenance
   RmtTheme.rerank
   populate_themes_for_display
   get_news
   redirect_to env["HTTP_REFERER"]
-#   render "index"
   end
 
   def get_news
