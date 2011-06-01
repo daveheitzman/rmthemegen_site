@@ -80,13 +80,16 @@ class ThemeController < ApplicationController
     do_maintenance
     populate_themes_for_display
     get_news
-    RmtTheme.rerank
   end
 
 
   def show
     @theme1=RmtTheme.find(params[:id])
-    @new_comment=ThemeComment.new(:theme_id=>params[:id])
+    if session[:theme_comment]
+      @comment = ThemeComment.new(session[:theme_comment])
+    else
+      @comment = ThemeComment.new(:theme_id=>params[:id])
+    end
     @previous_comments = @theme1.theme_comments
   end
   
@@ -103,31 +106,30 @@ class ThemeController < ApplicationController
       @theme1.newsfeeds << Newsfeed.create(:message=>msg)
       @theme1.save
     end
-    do_maintenance
-    RmtTheme.rerank
-    populate_themes_for_display
-    get_news
-    redirect_to env["HTTP_REFERER"]
+   # do_maintenance
+   # RmtTheme.rerank
+   populate_themes_for_display
+   get_news
+   redirect_to env["HTTP_REFERER"]
   end
 
   def downvote
-  key = ( session[:session_id]+params[:id] ).to_s
-
-  flash[:notice] =''
-  if !session[key] #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
-    @theme1 = RmtTheme.find(params[:id])
-    @theme1.downvotes= @theme1.downvotes + 1
-    @theme1.pop_score -= @@downvote_points
-    msg = "#{@theme1.style_pretty} theme <a href='/theme/#{@theme1.id}'>'#{@theme1.nice_name}'</a> received 1 downvote"
-    msg[0]=msg[0,1].upcase
-    @theme1.newsfeeds << Newsfeed.create(:message=>msg)
-    @theme1.save
-   end
-  do_maintenance
-  RmtTheme.rerank
-  populate_themes_for_display
-  get_news
-  redirect_to env["HTTP_REFERER"]
+    key = ( session[:session_id]+params[:id] ).to_s
+    flash[:notice] =''
+    if !session[key] #!( @@already_voted.include? (session[:session_id]+params[:id]).to_s )
+      @theme1 = RmtTheme.find(params[:id])
+      @theme1.downvotes= @theme1.downvotes + 1
+      @theme1.pop_score -= @@downvote_points
+      msg = "#{@theme1.style_pretty} theme <a href='/theme/#{@theme1.id}'>'#{@theme1.nice_name}'</a> received 1 downvote"
+      msg[0]=msg[0,1].upcase
+      @theme1.newsfeeds << Newsfeed.create(:message=>msg)
+      @theme1.save
+     end
+    #do_maintenance
+    #RmtTheme.rerank
+    populate_themes_for_display
+    get_news
+    redirect_to env["HTTP_REFERER"]
   end
 
   def get_news

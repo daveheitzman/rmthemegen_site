@@ -34,8 +34,13 @@ module AptifugeCom
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.encoding = "utf-8"
 
+    ReCaptcha::ViewHelper::RCC_PRIV = '6Ldq5MQSAAAAAF6DG-vxtB0EG1xX-aAeu9W4ddlt'
+    ReCaptcha::ViewHelper::RCC_PUB = "6Ldq5MQSAAAAAPhIPsPljDzS3uCW-ZMbd6hrrCn5"
+    ReCaptcha::AppHelper::RCC_PRIV = '6Ldq5MQSAAAAAF6DG-vxtB0EG1xX-aAeu9W4ddlt'
+    ReCaptcha::AppHelper::RCC_PUB = "6Ldq5MQSAAAAAPhIPsPljDzS3uCW-ZMbd6hrrCn5"
+
+    config.encoding = "utf-8"
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
   end

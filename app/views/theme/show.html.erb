@@ -1,13 +1,18 @@
+<div style ="width:900px;height:300px;">
 <div ><%=raw  theme_to_html(@theme1)+ theme_to_html(@theme1)+ theme_to_html(@theme1) %> </div>
-<div ><% form_for @new_comment do |c| %>
-     <div> <%= c.label :comment, "Add new comment" %></div>
-     <div> <%= c.text_area :comment, :cols => 40, :rows=>5 %></div>
+</div>
+<div class="comment_container">
+  <div ><% form_for @comment do |c| %>
+     <div> <%= c.label  "Add a new comment", :for=>:comments %></div>
+     <div> <%= c.text_area :comment, :cols => 40, :rows=>5, :value=>@comment.comment.to_s %></div>
      <div> <%= c.text_field :theme_id, :hidden=>true%></div>
+     <div class="recaptcha"> <%= raw get_captcha() %> </div>
      <div> <%= c.submit "Submit" %></div>
     <% end %>
 </div>
 <div class="comments_header">Previous comments</div>
-<div class="comments_area"><% @previous_comments.each do |com| %>
-        <%= com.comment %>
+<div class="previous_comments"><table><% @previous_comments.each do |com| %>
+     <tr style="color:blue;"><td>&ldquo; &nbsp;  <%= com.comment %>&nbsp;&rdquo;</td><td><%=com.created_at.to_s %></td> </td></tr>
      <% end %>
+</table></div>
 </div>

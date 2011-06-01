@@ -48,7 +48,8 @@ module ThemeHelper
 <div class="line">  end</div>
 <div class="line">end</div>
 </a></div></div></div>  '
-      @out += '<div class="info"><table><tr><td><span class="downloads">Rank: '+theme1.rank.to_s+'&nbsp;&nbsp;&nbsp;Downloads:'+ theme1.times_downloaded.to_s+'</span></td><td><span class="upvote_button">'  + ( link_to (raw "&nbsp;&nbsp;Upvote&nbsp;&nbsp;"), "/theme/upvote/"+(theme1.id.to_s) )+'</span></td></tr><tr><td><span class="download_button">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span></td><td><span class="downvote_button">'+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s) )+'</span></td></tr></table>  </div>    </div></div>'
+      @out += '<div class="info"><table><tr><td><span class="downloads">Rank: '+theme1.rank.to_s+'&nbsp;&nbsp;&nbsp;Downloads:'+ theme1.times_downloaded.to_s+'</span></td><td><span class="upvote_button">'  + ( link_to (raw "&nbsp;&nbsp;Upvote&nbsp;&nbsp;&nbsp;"), "/theme/upvote/"+(theme1.id.to_s), :remote=>true )+'</span></td></tr><tr><td><span class="download_button">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span></td><td><span class="downvote_button">'+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s), :remote=>true )+
+  '</span></td></tr></table>  </div>    </div></div>'
 
       end
       return @out
