@@ -1,9 +1,8 @@
 class ThemeCommentsController < ApplicationController
-
   def edit
   end
-
   def create
+
     session[:theme_comment]=params[:theme_comment]
     @comment = ThemeComment.new(params[:theme_comment])
     if validate_recap(params,@comment.errors) && @comment.save

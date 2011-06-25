@@ -90,7 +90,7 @@ class ThemeController < ApplicationController
     else
       @comment = ThemeComment.new(:theme_id=>params[:id])
     end
-    @previous_comments = @theme1.theme_comments
+    @previous_comments = @theme1.theme_comments.all( :order=>"created_at desc", :limit=>10)
   end
   
   def upvote
