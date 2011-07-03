@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'devise' # Devise must be required before RailsAdmin
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'rails', '3.0.7'
 gem 'color'
 gem 'xml-simple'
 gem 'rmthemegen'
@@ -8,6 +10,8 @@ gem 'will_paginate', '3.0.pre2'
 
 gem 'mysql'
 gem 'ruby-recaptcha'
+gem 'jquery-rails'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

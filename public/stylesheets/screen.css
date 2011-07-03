@@ -9,17 +9,44 @@ html {
   font-family: inherit;
   vertical-align: baseline;
 }
+/*
+body:after {
+    position: absolute;
+    z-index: -1;
+    top:0;left:0;right:0;bottom:0;
+    background: url("/images/website_cutout3_waist.png") repeat-y center;
+}
+*/
+/*body:after {background: url("/images/website_cutout3_waist.png") center repeat-y;}*/
 
 body {
-    background: #c5e4ec url("/images/website_cutout3_top.png") no-repeat top center;
+    background:  repeat-y top center url('/images/website_cutout3_waist.png');
 	padding: 0px;
-	margin: 0px;
+	margin:0px;
 	font-size: 12px;
 	color: #444;
+    z-index: 1;
 	font-family: helvetica, arial, sans-serif;
-	
+}
+#outer_container {
+    z-index:0;
+    background: /* #c5e4ec*/  url("/images/website_cutout3_top.png") no-repeat center top;
+    padding:0px;
+    margin:0px;
 }
 
+body.two-col #container {
+  /*width: 1090px;*/
+  width:100%;
+  margin:  0px auto 0px auto;
+  padding: 86px 0px 0px 0px;
+  overflow: hidden;
+
+}
+
+
+body #content-block {
+}
 
 /* line 6, ../../../../../../../usr/local/lib/ruby/gems/1.9.1/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 html {
@@ -471,14 +498,6 @@ body.two-col .alt {
   font-weight: normal;
 }
 /* line 38, ../../../app/stylesheets/partials/_two_col.scss */
-body.two-col #container {
-  /*width: 1090px;*/
-    
-  width:100%;
-  margin:  86px auto 0px auto;
-  overflow: hidden;
-
-}
 #bannertext {
     width:1020px;
     margin:auto;
@@ -498,7 +517,7 @@ body.two-col #banner {
   font-size: 8.8em;
   color:#CFFF8E;
 
-    font: "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", Georgia, serif;
+  font: "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", Georgia, serif;
  /* background-color: #8E9CA1; */
   margin: 0 auto 0 auto;
 }
@@ -517,18 +536,21 @@ body #header {
 }
 
 .footer-block {
+    position:absolute;
+    float:bottom;
     width:100%;
-    height:100%;
-    background:url("/images/website_cutout3_bottom.png") top center no-repeat;
+   
+    background:url("/images/website_cutout3_bottom.png") bottom center no-repeat;
 }
 /* line 50, ../../../app/stylesheets/partials/_two_col.scss */
 body.two-col #footer-container {
+  height:0px;
   display: block;
   width: 100%;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 0px auto;
   padding: 0 0 50px 0;
   /*background-color: #8E9CA1;*/
-  background: url("/images/website_cutout3_bottom.png") bottom no-repeat center;
+  background: #c5e4ec url("/images/website_cutout3_bottom.png") bottom no-repeat center;
 }
 body.two-col #footer-text {
   text-align: right;
@@ -574,21 +596,17 @@ body.two-col {
     padding: 0px 2px 0px 2px;
     }
 
-.waist-block {
-    width:100%;
-    height:500px;
-}
 .content-block {
     z-index: 110;
     width: 100%;
 }
+
 .content-container {
     z-index: 1;
     overflow-x: hidden;
     margin: 1px auto 0px auto;
     width: 1020px;
     color: black;
-    background-color:red;
     background: url("/images/website_cutout2_waist.png") center repeat-y;
    /* background-color: #87AFBD;*/
   
