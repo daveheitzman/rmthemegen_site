@@ -10,26 +10,25 @@ class ThemeController < ApplicationController
   def make_banner
     #makes a banner with the regular greenish background, but random foreground colors for each letter. 
       @fonts = ["Monaco","DejaVu Sans Mono", "Monospace", "Sans Serif", "Serif", "Fantasy", "Courier"]
-      @bgcol = "728a90"
+      @bgcol = "FFFFFF"
       @rc= RMThemeGen::ThemeGenerator.new
-      @ban = '<div id="container"><div id="banner"  >'+
-          '<div id="bannertext">'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont =>0.30)+';font-family:'+@fonts.shuffle.first+';">r</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.30)+';font-family:'+@fonts.shuffle.first+';">m</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">t</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">h</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">e</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">m</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">e</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">g</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">e</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">n</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">.</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">c</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">o</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';font-family:'+@fonts.shuffle.first+';">m</span>'+
-          '</div>    </div></div>'
-
+      @ban = '<span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont =>0.30)+';">r</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.30)+';">m</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">t</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">h</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">e</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">m</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">e</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">g</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">e</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">n</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">.</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">c</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">o</span>'+
+            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">m</span>' +'</span>'
+      
+      
   end
 
 

@@ -65,13 +65,17 @@ module ThemeHelper
       end
     end
 
-    def colorize_string(str1)
+    def colorize_string(str1, background_color="FFFFFF", min_contrast=0.23)
+      # returns a new string with each of its characters given a random color that is at least some certain minimum
+      # contrast against the background. it will be surrounded by a span.  
       @rc= RMThemeGen::ThemeGenerator.new
-      out = ''
-      str1.size.each do |index|
-      
+      @ban = '<span>'
+
+
+      str1.size.times do |i|
+        @ban += '<span style="color:#'+@rc.randcolor(:bg_rgb=>background_color, :min_cont =>0.24)+';">'+str1[i,1]+'</span>'
       end
-      str1
+      @ban
     end
 
     def bg_color_types_menu

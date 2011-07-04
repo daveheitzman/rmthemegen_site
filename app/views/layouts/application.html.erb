@@ -6,24 +6,37 @@
   <%= stylesheet_link_tag "theme_preview.css", :media=>"screen,presentation" %>
   <%= javascript_include_tag :all  %>
   <%= csrf_meta_tag %>
+  
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Permanent+Marker" />
 </head>
 
-<body class ="bp two-col">
+<body>
 <div id="outer_container">
-
-  
-  <%= raw link_to( (raw @ban), "/") %>
-  <div class="content-block">
-  <div id="header">
-    <div id="headertext">
-       &nbsp;
+  <div id="inner_container">
+  <div id="banner">
+  <div class="banner_inset">
+    <%= #image_tag "/images/rm_banner03.png"
+    %>
+    <div class="banner_text">
+      <%  session[:banner_text] ||= colorize_string("RubyMine::Theme < Generator","b4b4b4",0.24 )  %>
+      <span><%=  link_to( (raw session[:banner_text] ), "/")  %></span>
 
     </div>
   </div>
- <div id="content-block">
+    <%= render "layouts/site_blurb" %>
+  </div>
+
+  <div id="header">
+    <div id="headertext">
+header, header header
+    </div>
+  </div>
+  <div id="menu_top_wrapper">
+Menu | Menu | Menu
+  </div>
+  <div id="content-block">
   <div class="content-container">
     <div class="content-text-left">
-
     <%= yield %>
     </div>
     <div class="content-text-right">
@@ -34,18 +47,18 @@
       dheitzman<br />@aptifuge.com
 
     </div>
-   </div>
-  </div>
-  </div>
-  <div class="footer-block">
-  <div id="footer-container">
-    <div id="footer-text">
-    &copy; 2011  rmthemegen.com
     </div>
-  </div >
   </div>
-</div> 
 
 
+  <div class="footer-block">
+    <div id="footer-container">
+        <div id="footer-text">
+        &copy; 2011  rmthemegen.com
+        </div>
+    </div >
+  </div>
+</div>
+</div>
 </body>
 </html>
