@@ -27,8 +27,6 @@ class ThemeController < ApplicationController
             '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">c</span>'+
             '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">o</span>'+
             '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">m</span>' +'</span>'
-      
-      
   end
 
 
@@ -37,16 +35,15 @@ class ThemeController < ApplicationController
     @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
     @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
 
-    @theme_categories ={}#,"Popular", "New", "Most Commented On", "Color", "Dark", "Light"
-    @theme_categories["Popular"] = RmtTheme.find(:all,:order=>:rank,:limit=>4)
-#    @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
- #   @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
-  #  @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
+    @theme_categories =[{},{},{},{},{},{}]#,"Popular", "New", "Most Commented On", "Color", "Dark", "Light"
+    @theme_categories[0]["Popular"] = RmtTheme.find(:all,:order=>:rank,:limit=>4)
+    @theme_categories[1]["New"] = RmtTheme.find(:all, :order=>["created_at asc" ], :limit=>4)
+    sql = "select *, (select count(*) from `theme_comments` where `rmt_themes`.id = `theme_comments`.`theme_id`) as `commentcount`  from `rmt_themes` order by commentcount desc limit 4"
+    @theme_categories[2]["Most Commented On"] = RmtTheme.find_by_sql(sql)
+    @theme_categories[3]["Color Backgrounds"] = RmtTheme.where(:bg_color_style=>2).limit(4)
+    @theme_categories[4]["Light Backgrounds"] = RmtTheme.where(:bg_color_style=>1).limit(4)
+    @theme_categories[5]["Dark Backgrounds"] = RmtTheme.where(:bg_color_style=>0).limit(4)
 
-    #@theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
-
-   # @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
-    
   end
   
   def index

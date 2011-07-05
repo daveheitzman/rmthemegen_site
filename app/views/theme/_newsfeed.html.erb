@@ -1,7 +1,10 @@
-<div><h1> newsfeed</h1></div>
-<% if @news
+
+<div id="newsfeed-area">
+<div class="newsfeed-title"> newsfeed </div>
+   <% if @news
     @news.each do |n|
     %>
-   <div class="newsfeed_line"> <%=raw n.message + " " +n.updated_at.to_time.to_formatted_s(:long_ordinal)
-   %></div>
+   <div class="newsfeed-line"><div style="width:600px;float:left;"> <%=raw n.message %></div><div  style="display:inline;width:200px;"> <%= raw n.updated_at.to_time.to_formatted_s(:long_ordinal)  %></div></div>
 <% end   end %>
+   <div style="text-align:right;"><a href="#">More...</a></div>
+</div>
