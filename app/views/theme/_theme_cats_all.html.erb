@@ -1,0 +1,19 @@
+<%= raw flash[:notice] if flash[:notice] %>
+<div class="categories_all">
+<div class="category_row">
+   <ul>
+        <% @theme_categories.each do |k,v| %>
+         <p><%=k %></p>
+         <li> <% v.each do |theme| %>
+           <%=  raw theme.to_html_small
+               #raw theme_to_html(theme)
+#              theme.inspect
+              # theme.to_s
+           %>
+           <% end %>
+      </li>
+      <% end %>
+   </ul>
+</div>
+</div>
+

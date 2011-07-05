@@ -1,7 +1,8 @@
 module ThemeHelper
 
+
     def theme_to_html(theme1=nil)
-      @out = '<p>null theme</p>'
+      @out = '<br /><p>Sorry, no theme found.</p></br>'
       if theme1
         editor_links_to = case theme1.bg_color_style
         when 0
@@ -15,7 +16,7 @@ module ThemeHelper
         editor_links_to += theme1.id.to_s
         editor_links_to = theme_path theme1.id
 
-      @out = theme1.to_css+'<div class="theme"> <div class="preview "> <div id="preview-html "><a href="'+editor_links_to+'"><div class="editor">"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
+      @out = theme1.to_css+'<div class="theme-preview"> <a href="'+editor_links_to+'"><div class="editor">"'+(nice_name( theme1.theme_name) )+'"<div id="'+theme1.theme_name+'" class="preview-html">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div>'
       @out += '<div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span></div>
    <div class="line"></div>
@@ -49,7 +50,7 @@ module ThemeHelper
 <div class="line">end</div>
 </a></div></div></div>  '
       @out += '<div class="info"><table><tr><td><span class="downloads">Rank: '+theme1.rank.to_s+'&nbsp;&nbsp;&nbsp;Downloads:'+ theme1.times_downloaded.to_s+'</span></td><td><span class="upvote_button">'  + ( link_to (raw "&nbsp;&nbsp;Upvote&nbsp;&nbsp;&nbsp;"), "/theme/upvote/"+(theme1.id.to_s), :remote=>true )+'</span></td></tr><tr><td><span class="download_button">'+ (link_to "Download", ("/theme/download/"+theme1.id.to_s) )+'</span></td><td><span class="downvote_button">'+( link_to "Downvote", "/theme/downvote/"+(theme1.id.to_s), :remote=>true )+
-  '</span></td></tr></table>  </div>    </div></div>'
+  '</span></td></tr></table>  </div>'
 
       end
       return @out
@@ -70,8 +71,6 @@ module ThemeHelper
       # contrast against the background. it will be surrounded by a span.  
       @rc= RMThemeGen::ThemeGenerator.new
       @ban = '<span>'
-
-
       str1.size.times do |i|
         @ban += '<span style="color:#'+@rc.randcolor(:bg_rgb=>background_color, :min_cont =>0.24)+';">'+str1[i,1]+'</span>'
       end

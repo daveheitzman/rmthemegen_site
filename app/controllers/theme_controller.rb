@@ -36,6 +36,17 @@ class ThemeController < ApplicationController
     @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank).shuffle
     @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
     @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
+
+    @theme_categories ={}#,"Popular", "New", "Most Commented On", "Color", "Dark", "Light"
+    @theme_categories["Popular"] = RmtTheme.find(:all,:order=>:rank,:limit=>4)
+#    @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
+ #   @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
+  #  @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
+
+    #@theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
+
+   # @theme_categories["Popular"][:sql] = "select all from themes order by popularity limit 5"
+    
   end
   
   def index

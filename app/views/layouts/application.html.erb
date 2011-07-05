@@ -23,28 +23,47 @@
 
     </div>
   </div>
-    <%= render "layouts/site_blurb" %>
   </div>
 
   <div id="header">
     <div id="headertext">
 header, header header
+      <%= render "layouts/site_blurb" %>
     </div>
   </div>
   <div id="menu_top_wrapper">
-Menu | Menu | Menu
+   <%= render "layouts/menu" %>
   </div>
   <div id="content-block">
   <div class="content-container">
     <div class="content-text-left">
-    <%= yield %>
+    <%= yield
+    %>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
     <div class="content-text-right">
-    Information:<br/>
-      The .xml files hosted here are randomly generated syntax highlighting "theme" files for <a href="http://www.jetbrains.com/ruby/">JetBrain's RubyMine Editor, versions >= 3.0.0</a>
-<hr />
-      David Heitzman, 2011.<hr/>Comments, questions, etc are welcome: 
-      dheitzman<br />@aptifuge.com
+    <%= #render "layouts/explanation"
+    %>
+      
 
     </div>
     </div>

@@ -1,4 +1,3 @@
-
 html {
   margin: 0;
   padding: 0;
@@ -28,7 +27,6 @@ body {
 }
 
 #inner_container {
-
     width:100%;
 }
 
@@ -70,7 +68,6 @@ body {
     width: 1020px;
     padding:0px 0px 0px -2px;
 }
-
 
 .banner_inset {
     width:1012px;
@@ -658,41 +655,6 @@ body.two-col {
     padding: 2px 6px 2px 6px;
 }
 
-.theme_type_announce {
-    display: block;
-	background-color: #87AFBD;
-	border: 1px solid #7F7F7F;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-border-radius: 2px;
-
-	font-size: 24px;
-	padding: 0px;
-	font-weight: bold;
-	margin: 0px;
-}
-
-.theme_type_announce table tr td a {
-    
-}
-.theme_type_announce table tr td a:hover {
-/*    background-color:#6495ed;
-    color:purple; */
-}
-
-.theme_type_announce_small {
-    display: block;
-	background-color: #6DBDF3;
-	border: 1px solid #7F7F7F;
-	color: #4f3f5f;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-border-radius: 2px;
-	font-size: 17px;
-	padding: 2px 6px;
-	font-weight: bold;
-	margin-right: 2px;
-}
 
 .previous_comments {
     background-color: #266C89;
@@ -1077,15 +1039,6 @@ a.button-plugin img {
 	color: #FFF;
 }
 
-.editor {
-/*	font-family: "DejaVu Sans Mono"; */
-  font-family: "DejaVu Sans Mono", "Monaco", "monospace", "courier", "Inconsolata", "Consolas";
-	font-size: 12px;
-	padding: 0px 0px 0px 0px;
-	float: left;
-	width: 284px;
-}
-
 .sidebar {
 	font-family: "DejaVu Sans Mono", monospace;
 	font-size: 12px;
@@ -1094,12 +1047,6 @@ a.button-plugin img {
 	padding: 10px 0px;
 }
 
-.line {
-	height: 15px;
-	padding-left: 5px;
-	padding-right: 10px;
-	padding-top: 1px;
-}
 
 .lineNumber {
 	height: 15px;
@@ -1109,36 +1056,122 @@ a.button-plugin img {
 	text-align: right;
 }
 
-
-
-.theme {
-  float:left;
-  width: 288px;
-	margin: 2px 0px 2px 0px;
-  padding: 0px 2px 0px 2px;
+/*
+ *    THEME DISPLAY STYLES:
+ *
+*/
+.categories_all {
+   /*the large square block that the theme rows all sit in.*/
+   display:block;
 }
+.category_row {
+   height: 192px;
+   min-width: 100px;
+   max-width: 767px;
+   /*this is for 1 row of the the themes, containing 5 theme previews */
+   clear: both;
+   vertical-align:middle;
+   background: #aabbcc;
+   padding: 2px 4px 2px 4px;
+   margin: 2px 4px 2px 4px;
+   display:block;
+}
+
+.line {
+	height: 15px;
+	padding-left: 5px;
+	padding-right: 10px;
+	padding-top: 1px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+.editor_box:hover {
+   background: #aaaaaa;
+   color:#ebebeb;
+   
+
+}
+
+.editor_box {
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -border-radius: 3px;
+   background: #808080 ;
+   margin:2px;
+   padding:3px;
+   float:left;
+    width:181px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+   color:#bbbbbb;
+}
+
+.editor_title:hover {
+   color:inherit;
+}
+.editor_title {
+   font-size: 1.1em;
+   font-weight:bold;
+   text-shadow: 1px 1px 1px #333333 ;
+   font-family: serif;
+   color:inherit;
+}
+
+.editor {
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -border-radius: 3px;
+    display:block;
+    font-family: "DejaVu Sans Mono", "Monaco", "monospace", "courier", "Inconsolata", "Consolas";
+	font-size: 12px;
+	padding: 0px 0px 0px 0px;
+	width: 180px;
+   height: 150px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+.theme_type_announce {
+    display: block;
+	background-color: #87AFBD;
+	border: 1px solid #7F7F7F;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-border-radius: 2px;
+
+	font-size: 24px;
+	padding: 0px;
+	font-weight: bold;
+	margin: 0px;
+}
+
+.theme_type_announce table tr td a {
+
+}
+.theme_type_announce table tr td a:hover {
+
+}
+
+.theme_type_announce_small {
+    display: block;
+	background-color: #6DBDF3;
+	border: 1px solid #7F7F7F;
+	color: #4f3f5f;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-border-radius: 2px;
+	font-size: 17px;
+	padding: 2px 6px;
+	font-weight: bold;
+	margin-right: 2px;
+}
+
 
 .theme_row {
     float:left;
     width:900px;
     display:block;
-}
-.theme .preview {
-	display: block;
-	background-color: #FFF;
-
-	padding: 0px 1px 0px 1px;
-	border: 1px solid #DDD;
-}
-
-.theme .preview-html {
-    margin:none;
-    padding:none;
-    border: solid black 1px;
-	cursor: pointer;
-	width: 282px;
-	height: 200px;
-	overflow: hidden;
 }
 
 .theme .preview:hover {
@@ -1171,6 +1204,11 @@ a.button-plugin img {
 	font-size: 11px;
 }
 */
+
+
+
+/*  THEME BOXES END */
+
 
 .form label {
 	display: block;

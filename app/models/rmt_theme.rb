@@ -11,6 +11,8 @@ class RmtTheme < ActiveRecord::Base
   has_many :newsfeeds, :foreign_key => :theme_id
   has_many :theme_comments, :foreign_key => :theme_id
 
+
+
   def self.do_maintenance
 
     #this deletes the least popular XX% and refills.
@@ -82,6 +84,59 @@ class RmtTheme < ActiveRecord::Base
       when 0: "dark"
       when 2: "color"
       when 1: "light"
-    end  end
+    end
+  end
 
+  def to_html_small
+  
+  @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name)+'"</div><div class="editor"><div id="'+theme_name+'">'
+      @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div><div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span><span class="RUBY_COMMENT">&nbsp;#comment</span></div>
+   <div class="line"></div>
+
+<div class="line"><span class="RUBY_KEYWORD">module</span><span class="RUBY_CONSTANT"> SampleModule</span></div>
+<div class="line"><span class = "RUBY_SPECIFIC_CALL">  include</span> <span class = "RUBY_CONSTANT">Testcase</span></div>
+   <div class="line"></div>
+<div class="line"><span class="RUBY_PARAMDEF_CALL">  render </span><span class="RUBY_SYMBOL">:action</span> <span class="RUBY_OPERATION_SIGN">=></span><span class = "RUBY_STRING">\'foo\'</span></div>
+<div class="line"> <span class="RUBY_KEYWORD"> def</span> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_PARAMETER_ID">parameter</span><span class="RUBY_BRACKETS">)</span></div>
+<div class="line">    <span class="RUBY_LOCAL_VAR_ID">@parameter </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IDENTIFIER"> parameter</span></div>
+<div class="line"> <span class="RUBY_KEYWORD"> end</span></div>
+   <div class="line"></div>
+
+<div class="line"> <span class="RUBY_LOCAL_VAR_ID"> local_var <span class="RUBY_OPERATION_SIGN">= <span class="RUBY_IDENTIFIER">eval</span> <span class="RUBY_HEREDOC_ID"><<-"FOO"</span><span class="RUBY_SEMICOLON">;</span><span class="RUBY_LINE_CONTINUATION">\</span></div>
+<div class="line"><span class="RUBY_IDENTIFIER">printIndex</span> <span class = "RUBY_STRING">"Hello world!"</span></div>
+<div class="line"> <span class="RUBY_HEREDOC"> And now this is heredoc!</span></div>
+<div class="line"> <span class="RUBY_HEREDOC"> printIndex "Hello world again!"</span></div>
+<div class="line">  <span class="RUBY_HEREDOC_ID">FOO</span></div>
+
+<div class="line"> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_STRING">"</span><span class="RUBY_EXPR_IN_STRING">#{</span><span class="RUBY_GVAR">$GLOBAL_TIME</span> <span class="RUBY_OPERATION_SIGN"> >></span> <span class="RUBY_REGEXP">$`</span><span class="RUBY_EXPR_IN_STRING">}</span> <span class="RUBY_STRING">is</span> <span class="RUBY_INVALID_ESCAPE_SEQUENCE">\</span></div><div class="line"><span class="RUBY_STRING">Z sample</span> <span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">string</span><span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">"</span><span class="RUBY_OPERATION_SIGN">*</span> <span class="RUBY_NUMBER">777</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_SEMICOLON">;</span></div>
+
+<div class="line">  <span class="RUBY_KEYWORD">if</span> <span>(</span><span>$1</span> <span>=~</span> <span>/sample reg ex/)</span><span class="RUBY_KEYWORD"> then</span></div>
+
+<div class="line"> <span class="RUBY_KEYWORD"> begin</span></div>
+<div class="line">puts %W(s w), CONS, :foo;</div>
+<div class="line">do_something :action => "action"</div>
+<div class="line"><span class="RUBY_KEYWORD"> end</span></div>
+<div class="line">1.upto(@@n) do |index| printIndex "Hello" + index end</div>
+<div class="line">\\\\\\\\\\</div>
+<div class="line">end</div>
+<div class="line">end</div>
+
+
+</div></div></div>
+</a>'
+    return @out
+  end
 end
+
+=begin
+
+
+<div class="line">    puts %W(sample words), CONSTANT, :fooo;</div>
+<div class="line">    do_something :action => "action"</div>
+<div class="line"> <span class="RUBY_KEYWORD"> end</span></div>
+<div class="line">  1.upto(@@n) do |index| printIndex "Hello" + index end</div>
+<div class="line">  \\\\\\\\\\</div>
+<div class="line">  end</div>
+<div class="line">end</div>
+
+=end
