@@ -219,12 +219,11 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, th
 
 .previous_comments {
     background-color: #266C89;
-    padding: 2px 10px 2px 10px;
-    margin:10px 7px 10px 7px;
+    padding: 2px 4px 2px 4px;
+    margin:10px 4px 10px 4px;
     color: white;
     font-size: 1.1em;
-    width: 850px;
-
+    width: 100%;
 }
 .previous_comments td {
     border:solid #266C89 5px;
@@ -641,16 +640,17 @@ a.button-plugin img {
    display:block;
 }
 
+/* this is a single line within a theme display*/
 .line {
 	height: 15px;
 	padding-left: 5px;
 	padding-right: 2px;
 	padding-top: 1px;
-    overflow-x:hidden;
-    overflow-y:hidden;
+   overflow-x:hidden;
+   overflow-y:hidden;
 }
 
-.editor_box:hover {
+.category_row .editor_box:hover {
    background: #aaaaaa;
    color:#ebebeb;
 }
@@ -669,11 +669,12 @@ a.button-plugin img {
    color:#bbbbbb;
 }
 
-.editor_title:hover {
+.category_row .editor_title:hover {
    color:inherit;
 }
 .editor_title {
-   font-size: 1.1em;
+  display:inline;  
+  font-size: 1.1em;
    font-weight:bold;
    text-shadow: 1px 1px 1px #333333 ;
    font-family: serif;
@@ -693,6 +694,19 @@ a.button-plugin img {
    overflow-x:hidden;
    overflow-y:hidden;
 }
+
+.medium_theme_block {
+   padding:4px;
+   margin:4px;
+   width:100%;
+   background: #aabbcc;
+}
+.medium {
+   float:none;
+   width: 400px;
+   height: 500px;
+}
+
 
 .theme_type_announce {
    display: block;
@@ -733,10 +747,6 @@ a.button-plugin img {
     float:left;
     width:900px;
     display:block;
-}
-
-.theme .preview:hover {
-	border: 1px solid #000;
 }
 
 .theme .info {
@@ -1006,18 +1016,18 @@ table.data td.icon {
 	padding-right: 0px;
 }
 .download_button a:hover {
-    background-color:#6495ed;
-    color:purple;
+    background-color:#DEE8C6;
+    color:#654D11;
 }
 .download_button a{
 	color: #3b4919;
 	border: 1px solid #92a959;
-	background-color: #c8e08f;
+	background-color: #CEE792;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-border-radius: 2px;
 	font-size: 10px;
-	padding: 3px 5px;
+	padding: 1px 2px;
 	font-weight: bold;
 	margin-right: 2px;
 }

@@ -53,6 +53,7 @@ class ThemeController < ApplicationController
    # @theme1 = RmtTheme.all.shuffle!.first
     populate_themes_for_display
     get_news
+     do_maintenance
   end
 
   def show_colortype_page
