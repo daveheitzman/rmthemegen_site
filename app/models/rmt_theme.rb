@@ -3,7 +3,7 @@ require 'will_paginate'
 
 class RmtTheme < ActiveRecord::Base
   
-  @minimum_themes = 500 # total across all categories
+  @minimum_themes = 150 #for each category
   if ENV["RAILS_ENV"]=="development" then @minimum_themes= 25 end
   @bg_styles = [0,1,2]
   cattr_reader :per_page
@@ -89,7 +89,7 @@ class RmtTheme < ActiveRecord::Base
 
   def to_html_small
   
-  @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name)+'"</div><div class="editor"><div id="'+theme_name+'">'
+  @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name)+'"</div><div class="editor small"><div id="'+theme_name+'">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div><div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span><span class="RUBY_COMMENT">&nbsp;#comment</span></div>
    <div class="line"></div>
 
@@ -130,24 +130,27 @@ class RmtTheme < ActiveRecord::Base
 
 
    def to_html_medium
-      @out = to_css+'<div class="editor_box medium"><div class="editor_title">"'+(nice_name)+'"</div><div class="download_button" style="float:right;"><a href=""> Download</a></div><div class="editor medium"><div id="'+theme_name+'">'
-          @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div><div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span><span class="RUBY_COMMENT">&nbsp;#TODO: change to 778</span></div>
+      @out = to_css+'<div class="editor_box editor_box_medium"><div class="editor_title">"'+(nice_name)+'"</div><div class="download_button" style="float:right;"><a href=""> Download</a></div><div class="editor editor_medium"><div id="'+theme_name+'" >'
+
+          @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require </span><span class="RUBY_KEYWORD">File.dirname</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CONSTANT">__FILE__</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_OPERATION_SIGN">+</span><span class = "RUBY_STRING">"/token_list"</span></div>
+<div class="line">&nbsp; </div>
+<div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER"> 777</span><span class="RUBY_COMMENT">&nbsp;&nbsp; #TODO: change to 778</span></div>
        <div class="line"></div>
 
-    <div class="line"><span class="RUBY_KEYWORD">module</span><span class="RUBY_CONSTANT"> SampleModule</span></div>
+    <div class="line"><span class="RUBY_KEYWORD">module</span><span class="RUBY_CONSTANT"> SampleModule</span><span class="RUBY_OPERATION_SIGN"> < </span><span class="RUBY_CONSTANT"> ParentModule</span></div>
     <div class="line"><span class = "RUBY_SPECIFIC_CALL">  include</span> <span class = "RUBY_CONSTANT">Testcase</span></div>
        <div class="line"></div>
     <div class="line"><span class="RUBY_PARAMDEF_CALL">  render </span><span class="RUBY_SYMBOL">:action</span> <span class="RUBY_OPERATION_SIGN">=></span><span class = "RUBY_STRING">\'foo\'</span></div>
     <div class="line"> <span class="RUBY_KEYWORD"> def</span> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_PARAMETER_ID">parameter</span><span class="RUBY_BRACKETS">)</span></div>
-    <div class="line">    <span class="RUBY_LOCAL_VAR_ID">@parameter </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IDENTIFIER"> parameter</span></div>
+    <div class="line">    <span class="RUBY_LOCAL_VAR_ID">&nbsp;&nbsp;&nbsp;@object_var </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IVAR"> parameter</span></div>
     <div class="line"> <span class="RUBY_KEYWORD"> end</span></div>
-       <div class="line"></div>
+       <div class="line">&nbsp;</div>
 
     <div class="line"> <span class="RUBY_LOCAL_VAR_ID"> local_var <span class="RUBY_OPERATION_SIGN">= <span class="RUBY_IDENTIFIER">eval</span> <span class="RUBY_HEREDOC_ID"><<-"FOO"</span><span class="RUBY_SEMICOLON">;</span><span class="RUBY_LINE_CONTINUATION">\</span></div>
     <div class="line"><span class="RUBY_IDENTIFIER">printIndex</span> <span class = "RUBY_STRING">"Hello world!"</span></div>
-    <div class="line CARET_ROW_COLOR"> <span class="RUBY_HEREDOC"> And now this is heredoc!</span></div>
-    <div class="line"> <span class="RUBY_HEREDOC"> printIndex "Hello world again!"</span></div>
+    <div class="line CARET_ROW_COLOR"> <span class="RUBY_HEREDOC"> This is heredoc text!</span></div>
     <div class="line">  <span class="RUBY_HEREDOC_ID">FOO</span></div>
+    <div class="line">&nbsp;</div>
 
     <div class="line"> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_STRING">"</span><span class="RUBY_EXPR_IN_STRING">#{</span><span class="RUBY_GVAR">$GLOBAL_TIME</span> <span class="RUBY_OPERATION_SIGN"> >></span> <span class="RUBY_REGEXP">$`</span><span class="RUBY_EXPR_IN_STRING">}</span> <span class="RUBY_STRING">is</span> <span class="RUBY_INVALID_ESCAPE_SEQUENCE">\</span></div><div class="line"><span class="RUBY_STRING">Z sample</span> <span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">string</span><span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">"</span><span class="RUBY_OPERATION_SIGN">*</span> <span class="RUBY_NUMBER">777</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_SEMICOLON">;</span></div>
 
@@ -159,11 +162,16 @@ class RmtTheme < ActiveRecord::Base
     <div class="line"><span class="RUBY_KEYWORD"> end</span></div>
     <div class="line"><span class="RUBY_NUMBER">1</span><span class="RUBY_IDENTIFIER">.upto</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CVAR">@@n</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_KEYWORD">do</span> <span class="RUBY_OPERATION_SIGN">|</span><span class="RUBY_PARAMETER_ID">index</span><span class="RUBY_OPERATION_SIGN">|</span><span class="RUBY_IDENTIFIER">printIndex</span><span class="RUBY_STRING">"Hello"</span><span class="RUBY_OPERATION_SIGN">+</span><span class="RUBY_PARAMETER_ID">index</span><span class="RUBY_KEYWORD">end</span></div>
     <div class="line"><span class="RUBY_BAD_CHARACTER">\\\\\\\\\\</span></div>
-    <div class="line">end</div>
-    <div class="line">end</div>
+    <div class="line"><span class="RUBY_KEYWORD">end</span></div>
+    <div class="line"><span class="RUBY_KEYWORD">end</span></div>
 
 
-    </div></div></div>
+    </div></div>
+      <table class="editor_medium_buttons"><tbody>
+      <tr><td><a class="button-plugin" href="">button</a></td><td><a class="button-plugin" href="">button</a></td><td><a class="button-plugin" href="">Like</a></td></tr>
+      <tr><td><a class="button-plugin" href="">button</a></td><td><a class="button-plugin" href="">something</a></td><td><a class="button-plugin" href="">Dislike</a></td></tr>
+      </tbody></table>
+ class="button Here we put buttons and all kinds of stuff outer</div>
     '
         return @out
    end

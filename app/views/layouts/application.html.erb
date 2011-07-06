@@ -3,11 +3,11 @@
 <head>
   <title>rmthemegen.com</title>
   <%= stylesheet_link_tag "screen.css", :media=>"screen,presentation" %>
-  <%= stylesheet_link_tag "theme_preview.css", :media=>"screen,presentation" %>
   <%= javascript_include_tag :all  %>
   <%= csrf_meta_tag %>
-  
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Permanent+Marker" />
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Hammersmith+One" />
 </head>
 
 <body>
@@ -25,10 +25,11 @@
   </div>
   </div>
 
-  <div id="header">
-    <div id="headertext">
-header, header header
-      <%= render "layouts/site_blurb" %>
+  <div id="header-block">
+    <div id="header-wrapper">
+       <div id="header-text">
+          <%= render "layouts/site_blurb" %>
+       </div>
     </div>
   </div>
   <div id="menu_top_wrapper">

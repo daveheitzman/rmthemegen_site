@@ -41,18 +41,30 @@ body {
     width: 1020px;
 }
 
-#headertext {
-    background:darkgreen;
-    color:white;
-    width:1020px;
-    margin:auto;
+#header-block {
+  width: 100%;
+  margin: 0 auto 0 auto;
 }
 
-#header {
-  background: lightgreen;
-  text-align:right;
-  width: 100%   ;
-  margin: 0 auto 0 auto;
+#header-wrapper {
+   border-top:grey solid 1px;
+   border-bottom:grey solid 1px;
+    background:#cccccc;
+    color:white;
+    width:1019px;
+    margin-left:auto;
+    margin-right:auto;
+
+   
+}
+
+#header-text {
+   font-family: "Hammersmith One";
+   font-size: 12pt;
+   margin-left:5px;
+   margin-right:5px;
+   color: #424242;
+   
 }
 
 #banner {
@@ -84,6 +96,7 @@ body {
     margin:auto;
 }
 #menu_top_text {
+
 }
 
 .banner_text {
@@ -437,11 +450,6 @@ a {
 	background-color: #b0cce3;
 }
 
-#wrapper {
-	width: 960px;
-	margin-left: auto;
-	margin-right: auto;
-}
 
 .setting-entry {
 	margin-bottom: 2px;
@@ -452,13 +460,22 @@ a.button,a.button-create,a.button-plugin {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font-size: 14px;
-	padding: 15px 17px;
 	display: block;
-	margin-bottom: 10px;
-	background-color: #c8e08f;
 	color: #42580d;
 	text-shadow: none;
 	text-align: center;
+   height:20px;
+   width:60px;
+   vertical-align:center;
+   margin-left:auto;
+   margin-right:auto;
+   position: relative;
+   background-color: #c8e08f;
+   background-color: #3b6885;
+   color: #FFF;
+   font-weight: bold;
+   font-size: 16px;
+   text-shadow: 1px 1px 0px #0e3147;
 }
 
 a.button:hover,a.button-create:hover,a.button-plugin:hover {
@@ -466,33 +483,12 @@ a.button:hover,a.button-create:hover,a.button-plugin:hover {
 	background-color: #a0c93d;
 	color: #253304;
 	text-decoration: none;
+   background-color: #072335;
+   color: #FFF;
+   text-shadow: 1px 1px 0px #000;
+   text-decoration: underline;
 }
 
-a.button-create,a.button-plugin {
-	background-color: #c8e08f;
-	color: #42580d;
-	float: left;
-	margin: 0px;
-	margin-right: 20px;
-	position: relative;
-}
-
-a.button-plugin {
-	background-color: #3b6885;
-	margin-right: 0px;
-	color: #FFF;
-	font-weight: bold;
-	padding: 13px 10px;
-	font-size: 16px;
-	text-shadow: 1px 1px 0px #0e3147;
-}
-
-a.button-plugin:hover {
-	background-color: #072335;
-	color: #FFF;
-	text-shadow: 1px 1px 0px #000;
-	text-decoration: underline;
-}
 
 a.button-plugin img {
 	position: absolute;
@@ -616,6 +612,23 @@ a.button-plugin img {
  *    THEME DISPLAY STYLES:
  *
 */
+
+/* this is the "buttons area" */
+.editor_medium_buttons {
+   height:60px;
+   width:400px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   width:100%;
+   margin:auto;
+}
+
+.editor_medium_buttons tr td{
+
+
+   
+}
+
 .categories_all {
    /*the large square block that the theme rows all sit in.*/
    display:block;
@@ -629,7 +642,7 @@ a.button-plugin img {
    list-style: none;
 }
 .category_row {
-   height: 192px;
+   height: 196px;
    /*min-width: 100px;
    max-width: 770px;*/
    width:100%;
@@ -642,7 +655,6 @@ a.button-plugin img {
 
 /* this is a single line within a theme display*/
 .line {
-	height: 15px;
 	padding-left: 5px;
 	padding-right: 2px;
 	padding-top: 1px;
@@ -660,10 +672,11 @@ a.button-plugin img {
    -moz-border-radius: 3px;
    -border-radius: 3px;
    background: #808080 ;
-   margin:2px;
+   margin:2px 3px;
    padding:3px;
    float:left;
-   width:181px;
+   width:180 px;
+   height: 170px;
    overflow-x:hidden;
    overflow-y:hidden;
    color:#bbbbbb;
@@ -675,10 +688,12 @@ a.button-plugin img {
 .editor_title {
   display:inline;  
   font-size: 1.1em;
-   font-weight:bold;
-   text-shadow: 1px 1px 1px #333333 ;
-   font-family: serif;
-   color:inherit;
+  font-weight:bold;
+  text-shadow: 1px 1px 1px #333333 ;
+  font-family: serif;
+  color:inherit;
+  margin:2px 4px 2px 4px;
+  overflow:hide;
 }
 
 .editor {
@@ -690,7 +705,8 @@ a.button-plugin img {
 	font-size: 12px;
 	padding: 0px 0px 0px 0px;
 	width: 180px;
-   height: 150px;
+   height:95%;
+   margin-top:2px;
    overflow-x:hidden;
    overflow-y:hidden;
 }
@@ -701,12 +717,23 @@ a.button-plugin img {
    width:100%;
    background: #aabbcc;
 }
-.medium {
+.small {
+   height:150px;
+}
+.editor_medium {
    float:none;
    width: 400px;
-   height: 500px;
+   font-size:1.1em;
+   line-height:1.3em;
 }
 
+.editor_box_medium {
+   height:100%;
+   width:400px;
+   
+   float:none;
+
+}
 
 .theme_type_announce {
    display: block;
