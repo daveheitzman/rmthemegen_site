@@ -130,7 +130,7 @@ class RmtTheme < ActiveRecord::Base
 
 
    def to_html_medium
-      @out = to_css+'<div class="editor_box editor_box_medium"><div class="editor_title">"'+(nice_name)+'"</div><div class="download_button" style="float:right;"><a href=""> Download</a></div><div class="editor editor_medium"><div id="'+theme_name+'" >'
+      @out = to_css+'<div class="editor_box_medium"><div class="editor_title">"'+(nice_name)+'"</div><div class="download_button" style="float:right;"></div><div class="editor editor_medium"><div id="'+theme_name+'" >'
 
           @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require </span><span class="RUBY_KEYWORD">File.dirname</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CONSTANT">__FILE__</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_OPERATION_SIGN">+</span><span class = "RUBY_STRING">"/token_list"</span></div>
 <div class="line">&nbsp; </div>
@@ -138,41 +138,42 @@ class RmtTheme < ActiveRecord::Base
        <div class="line"></div>
 
     <div class="line"><span class="RUBY_KEYWORD">module</span><span class="RUBY_CONSTANT"> SampleModule</span><span class="RUBY_OPERATION_SIGN"> < </span><span class="RUBY_CONSTANT"> ParentModule</span></div>
-    <div class="line"><span class = "RUBY_SPECIFIC_CALL">  include</span> <span class = "RUBY_CONSTANT">Testcase</span></div>
+    <div class="line"><span class = "RUBY_SPECIFIC_CALL">&nbsp;&nbsp;include</span> <span class = "RUBY_CONSTANT">Testcase</span></div>
        <div class="line"></div>
-    <div class="line"><span class="RUBY_PARAMDEF_CALL">  render </span><span class="RUBY_SYMBOL">:action</span> <span class="RUBY_OPERATION_SIGN">=></span><span class = "RUBY_STRING">\'foo\'</span></div>
-    <div class="line"> <span class="RUBY_KEYWORD"> def</span> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_PARAMETER_ID">parameter</span><span class="RUBY_BRACKETS">)</span></div>
-    <div class="line">    <span class="RUBY_LOCAL_VAR_ID">&nbsp;&nbsp;&nbsp;@object_var </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IVAR"> parameter</span></div>
-    <div class="line"> <span class="RUBY_KEYWORD"> end</span></div>
+    <div class="line"><span class="RUBY_PARAMDEF_CALL">&nbsp;&nbsp;render </span><span class="RUBY_SYMBOL">:action</span> <span class="RUBY_OPERATION_SIGN">=></span><span class = "RUBY_STRING">\'foo\'</span></div>
+    <div class="line"> <span class="RUBY_KEYWORD">&nbsp;&nbsp;def</span><span class="RUBY_METHOD_NAME"> foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_PARAMETER_ID">parameter</span><span class="RUBY_BRACKETS">)</span></div>
+    <div class="line"><span class="RUBY_LOCAL_VAR_ID">&nbsp;&nbsp;&nbsp;&nbsp;@object_var </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IVAR"> parameter</span></div>
+    <div class="line"> <span class="RUBY_KEYWORD">&nbsp;&nbsp;end</span></div>
        <div class="line">&nbsp;</div>
 
-    <div class="line"> <span class="RUBY_LOCAL_VAR_ID"> local_var <span class="RUBY_OPERATION_SIGN">= <span class="RUBY_IDENTIFIER">eval</span> <span class="RUBY_HEREDOC_ID"><<-"FOO"</span><span class="RUBY_SEMICOLON">;</span><span class="RUBY_LINE_CONTINUATION">\</span></div>
-    <div class="line"><span class="RUBY_IDENTIFIER">printIndex</span> <span class = "RUBY_STRING">"Hello world!"</span></div>
-    <div class="line CARET_ROW_COLOR"> <span class="RUBY_HEREDOC"> This is heredoc text!</span></div>
-    <div class="line">  <span class="RUBY_HEREDOC_ID">FOO</span></div>
+    <div class="line"> <span class="RUBY_LOCAL_VAR_ID">&nbsp;&nbsp;local_var <span class="RUBY_OPERATION_SIGN">= <span class="RUBY_IDENTIFIER">eval</span> <span class="RUBY_HEREDOC_ID"><<-"FOO"</span><span class="RUBY_SEMICOLON">;</span><span class="RUBY_LINE_CONTINUATION">\</span></div>
+    <div class="line"><span class="RUBY_IDENTIFIER">&nbsp;&nbsp;printIndex</span> <span class = "RUBY_STRING">"Hello world!"</span></div>
+    <div class="line CARET_ROW_COLOR"> <span class="RUBY_HEREDOC">&nbsp;&nbsp;This is heredoc text!</span></div>
+    <div class="line">  <span class="RUBY_HEREDOC_ID">&nbsp;&nbsp;FOO</span></div>
     <div class="line">&nbsp;</div>
 
-    <div class="line"> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_STRING">"</span><span class="RUBY_EXPR_IN_STRING">#{</span><span class="RUBY_GVAR">$GLOBAL_TIME</span> <span class="RUBY_OPERATION_SIGN"> >></span> <span class="RUBY_REGEXP">$`</span><span class="RUBY_EXPR_IN_STRING">}</span> <span class="RUBY_STRING">is</span> <span class="RUBY_INVALID_ESCAPE_SEQUENCE">\</span></div><div class="line"><span class="RUBY_STRING">Z sample</span> <span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">string</span><span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">"</span><span class="RUBY_OPERATION_SIGN">*</span> <span class="RUBY_NUMBER">777</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_SEMICOLON">;</span></div>
+    <div class="line"> <span class="RUBY_IDENTIFIER">&nbsp;&nbsp;foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_STRING">"</span><span class="RUBY_EXPR_IN_STRING">#{</span><span class="RUBY_GVAR">$GLOBAL_TIME</span> <span class="RUBY_OPERATION_SIGN"> >></span> <span class="RUBY_NTH_REF">$`</span><span class="RUBY_EXPR_IN_STRING">}</span> <span class="RUBY_STRING">is</span> <span class="RUBY_INVALID_ESCAPE_SEQUENCE">\</span></div>
+<div class="line"><span class="RUBY_STRING">&nbsp;&nbsp;Z sample</span> <span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">string</span><span class="RUBY_ESCAPE_SEQUENCE">\"</span><span class="RUBY_STRING">"</span><span class="RUBY_OPERATION_SIGN">*</span> <span class="RUBY_NUMBER">777</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_SEMICOLON">;</span></div>
 
-    <div class="line">  <span class="RUBY_KEYWORD">if</span> <span>(</span><span>$1</span> <span  class="RUBY_OPERATION_SIGN">=~</span> <span class="RUBY_REGEXP">/sample reg ex/)</span><span class="RUBY_KEYWORD"> then</span></div>
 
-    <div class="line"> <span class="RUBY_KEYWORD">begin</span></div>
-    <div class="line"><span class="RUBY_IDENTIFIER">puts</span><span class="RUBY_WORDS">%W(two words)</span><span class="RUBY_COMMA">,</span><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_COMMA">,</span><span class="RUBY_SYMBOL">:foo</span><span class="RUBY_SEMICOLON">;</span></div>
-    <div class="line"><span class="RUBY_IDENTIFIER">do_something</span><span class="RUBY_SYMBOL">:action</span><span class="RUBY_HASH_ASSOC"> =></span><span class="RUBY_STRING">"action"</span></div>
-    <div class="line"><span class="RUBY_KEYWORD"> end</span></div>
-    <div class="line"><span class="RUBY_NUMBER">1</span><span class="RUBY_IDENTIFIER">.upto</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CVAR">@@n</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_KEYWORD">do</span> <span class="RUBY_OPERATION_SIGN">|</span><span class="RUBY_PARAMETER_ID">index</span><span class="RUBY_OPERATION_SIGN">|</span><span class="RUBY_IDENTIFIER">printIndex</span><span class="RUBY_STRING">"Hello"</span><span class="RUBY_OPERATION_SIGN">+</span><span class="RUBY_PARAMETER_ID">index</span><span class="RUBY_KEYWORD">end</span></div>
+    <div class="line">  <span class="RUBY_KEYWORD">&nbsp;&nbsp;if</span> <span class="RUBY_BRACKETS">(</span><span class="RUBY_NTH_REF">$1</span> <span  class="RUBY_OPERATION_SIGN">=~</span> <span class="RUBY_REGEXP">/sample reg ex/)</span><span class="RUBY_KEYWORD"> then</span></div>
+
+    <div class="line"> <span class="RUBY_KEYWORD">&nbsp;&nbsp;begin</span></div>
+    <div class="line"><span class="RUBY_IDENTIFIER">&nbsp;&nbsp;&nbsp;&nbsp;puts&nbsp  </span><span class="RUBY_WORDS">%W(two words)</span><span class="RUBY_COMMA">,</span><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_COMMA">,</span><span class="RUBY_SYMBOL">:foo</span><span class="RUBY_SEMICOLON">;</span></div>
+    <div class="line"><span class="RUBY_IDENTIFIER">&nbsp;&nbsp;&nbsp;&nbsp;do_something</span><span class="RUBY_SYMBOL">&nbsp;:action</span><span class="RUBY_HASH_ASSOC"> =></span><span class="RUBY_STRING">&nbsp;"action"</span></div>
+    <div class="line"><span class="RUBY_KEYWORD">&nbsp;&nbsp;end</span></div>
+    <div class="line"><span class="RUBY_NUMBER">&nbsp;&nbsp;1</span><span class="RUBY_IDENTIFIER">.upto</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CVAR">@@n</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_KEYWORD">&nbsp;do</span><span class="RUBY_OPERATION_SIGN">&nbsp;|</span><span class="RUBY_PARAMETER_ID">index</span><span class="RUBY_OPERATION_SIGN">|</span><span class="RUBY_IDENTIFIER">&nbsp;foopr</span><span class="RUBY_STRING">&nbsp;"Hello"</span><span class="RUBY_OPERATION_SIGN">+</span><span class="RUBY_PARAMETER_ID">index</span><span class="RUBY_KEYWORD">&nbsp;end</span></div>
     <div class="line"><span class="RUBY_BAD_CHARACTER">\\\\\\\\\\</span></div>
-    <div class="line"><span class="RUBY_KEYWORD">end</span></div>
     <div class="line"><span class="RUBY_KEYWORD">end</span></div>
 
 
     </div></div>
       <table class="editor_medium_buttons"><tbody>
-      <tr><td><a class="button-plugin" href="">button</a></td><td><a class="button-plugin" href="">button</a></td><td><a class="button-plugin" href="">Like</a></td></tr>
-      <tr><td><a class="button-plugin" href="">button</a></td><td><a class="button-plugin" href="">something</a></td><td><a class="button-plugin" href="">Dislike</a></td></tr>
-      </tbody></table>
- class="button Here we put buttons and all kinds of stuff outer</div>
-    '
-        return @out
+      <tr><td>Created: '
+      Time::DATE_FORMATS[:rmtg]="%b %d, %Y at %I:%M %p"
+      @out+=created_at.localtime.to_formatted_s(:rmtg)+'<br/>Views: <span style="color:#E9A172;font-weight: heavy;font-size: 1.1em">'+times_clicked.to_s+'</span>&nbsp;&nbsp;Rank: <span style="color:#E9A172;font-weight: heavy;font-size: 1.1em">'+rank.to_s+'</span> / '+RmtTheme.count.to_s+'</td><td>Downloads: '+times_downloaded.to_s+'<br />&nbsp;</td><td><a class="button-plugin" href="'+("/theme/upvote/#{id}" )+'">Like</a></td></tr>
+      <tr><td>Likes: ' +upvotes.to_s+' Dislikes: '+downvotes.to_s+'</td><td><a class="button-plugin" href="'+("/theme/download/#{id}" )+'">Download</a></td><td><a class="button-plugin" href="'+("/theme/downvote/#{id}")+'">Dislike</a></td></tr>
+      </tbody></table> </div>'
+     return @out
    end
 end

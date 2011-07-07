@@ -459,23 +459,26 @@ a.button,a.button-create,a.button-plugin {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	font-size: 14px;
 	display: block;
 	color: #42580d;
-	text-shadow: none;
 	text-align: center;
-   height:20px;
-   width:60px;
-   vertical-align:center;
+   height:26px;
+   width:90px;
+   padding-top: 6px;
+   padding-left:3px;
+   margin-top:4px;
+   margin-bottom:4px;
    margin-left:auto;
-   margin-right:auto;
+
+   margin-right:0;
    position: relative;
-   background-color: #c8e08f;
-   background-color: #3b6885;
+/*   background-color: #c8e08f;
+  */ background: #3b6885  no-repeat right;
    color: #FFF;
    font-weight: bold;
    font-size: 16px;
    text-shadow: 1px 1px 0px #0e3147;
+   vertical-align:middle;
 }
 
 a.button:hover,a.button-create:hover,a.button-plugin:hover {
@@ -620,13 +623,17 @@ a.button-plugin img {
    -webkit-border-radius: 3px;
    -moz-border-radius: 3px;
    width:100%;
+   padding-left:0px;
+   padding-right:0px;
    margin:auto;
 }
 
 .editor_medium_buttons tr td{
+   padding-top: 3px;
+   padding-left:0px;
+   padding-right:0px;
+   margin-right:0;
 
-
-   
 }
 
 .categories_all {
@@ -675,8 +682,8 @@ a.button-plugin img {
    margin:2px 3px;
    padding:3px;
    float:left;
-   width:180 px;
-   height: 170px;
+   max-width: 180px;
+   max-height: 170px;
    overflow-x:hidden;
    overflow-y:hidden;
    color:#bbbbbb;
@@ -693,7 +700,8 @@ a.button-plugin img {
   font-family: serif;
   color:inherit;
   margin:2px 4px 2px 4px;
-  overflow:hide;
+  overflow-x:hidden;
+  overflow-y:hidden;
 }
 
 .editor {
@@ -723,15 +731,25 @@ a.button-plugin img {
 .editor_medium {
    float:none;
    width: 400px;
+   margin-left:auto;
+   margin-right:auto;
    font-size:1.1em;
    line-height:1.3em;
 }
 
 .editor_box_medium {
-   height:100%;
-   width:400px;
-   
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -border-radius: 3px;
+   background: #808080 ;
+   margin:2px 3px;
+   padding:3px;
    float:none;
+   max-width: 400px;
+   max-height: 555px;
+   overflow-x:hidden;
+   overflow-y:hidden;
+   color:#bbbbbb;
 
 }
 

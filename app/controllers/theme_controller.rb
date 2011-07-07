@@ -1,5 +1,6 @@
 class ThemeController < ApplicationController
   @@download_to_vote_ratio = 4  # for p opularity, it means 1 download is worth X upvotes or downvotes
+  @@view_points =1 #popularity increase for a theme getting viewed
   @@upvote_points = 3
   @@downvote_points = 1
   helper :all
