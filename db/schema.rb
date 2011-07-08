@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110703003217) do
+ActiveRecord::Schema.define(:version => 20110707232202) do
 
   create_table "newsfeeds", :force => true do |t|
     t.integer  "theme_id",   :default => 0
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(:version => 20110703003217) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
+
+  create_table "rmt_devise_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rmt_devise_users", ["email"], :name => "index_rmt_devise_users_on_email", :unique => true
+  add_index "rmt_devise_users", ["reset_password_token"], :name => "index_rmt_devise_users_on_reset_password_token", :unique => true
 
   create_table "rmt_themes", :force => true do |t|
     t.string   "theme_name",       :default => "no_name_yet"

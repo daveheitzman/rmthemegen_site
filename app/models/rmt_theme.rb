@@ -90,19 +90,21 @@ class RmtTheme < ActiveRecord::Base
   def to_html_small
   
   @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name)+'"</div><div class="editor small"><div id="'+theme_name+'">'
-      @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require</span><span class="RUBY_STRING"> "test"</span></div><div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER">777</span><span class="RUBY_COMMENT">&nbsp;#comment</span></div>
-   <div class="line"></div>
+      @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require </span><span class="RUBY_KEYWORD">File.dirname</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CONSTANT">__FILE__</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_OPERATION_SIGN">+</span><span class = "RUBY_STRING">"/token_list"</span></div>
+<div class="line">&nbsp; </div>
+<div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER"> 777</span><span class="RUBY_COMMENT">&nbsp;&nbsp; #TODO: change to 778</span></div>
+       <div class="line"></div>
 
-<div class="line"><span class="RUBY_KEYWORD">module</span><span class="RUBY_CONSTANT"> SampleModule</span></div>
-<div class="line"><span class = "RUBY_SPECIFIC_CALL">  include</span> <span class = "RUBY_CONSTANT">Testcase</span></div>
-   <div class="line"></div>
-<div class="line"><span class="RUBY_PARAMDEF_CALL">  render </span><span class="RUBY_SYMBOL">:action</span> <span class="RUBY_OPERATION_SIGN">=></span><span class = "RUBY_STRING">\'foo\'</span></div>
-<div class="line"> <span class="RUBY_KEYWORD"> def</span> <span class="RUBY_IDENTIFIER">foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_PARAMETER_ID">parameter</span><span class="RUBY_BRACKETS">)</span></div>
-<div class="line">    <span class="RUBY_LOCAL_VAR_ID">@parameter </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IDENTIFIER"> parameter</span></div>
-<div class="line"> <span class="RUBY_KEYWORD"> end</span></div>
-   <div class="line"></div>
+    <div class="line"><span class="RUBY_KEYWORD">module</span><span class="RUBY_CONSTANT"> SampleModule</span><span class="RUBY_OPERATION_SIGN"> < </span><span class="RUBY_CONSTANT"> ParentModule</span></div>
+    <div class="line"><span class = "RUBY_SPECIFIC_CALL">&nbsp;&nbsp;include</span> <span class = "RUBY_CONSTANT">Testcase</span></div>
+       <div class="line"></div>
+    <div class="line"><span class="RUBY_PARAMDEF_CALL">&nbsp;&nbsp;render </span><span class="RUBY_SYMBOL">:action</span> <span class="RUBY_OPERATION_SIGN">=></span><span class = "RUBY_STRING">\'foo\'</span></div>
+    <div class="line"> <span class="RUBY_KEYWORD">&nbsp;&nbsp;def</span><span class="RUBY_METHOD_NAME"> foo</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_PARAMETER_ID">parameter</span><span class="RUBY_BRACKETS">)</span></div>
+    <div class="line"><span class="RUBY_LOCAL_VAR_ID">&nbsp;&nbsp;&nbsp;&nbsp;@object_var </span><span class="RUBY_OPERATION_SIGN">=</span><span class="RUBY_IVAR"> parameter</span></div>
+    <div class="line"> <span class="RUBY_KEYWORD">&nbsp;&nbsp;end</span></div>
+       <div class="line">&nbsp;</div>
 
-<div class="line"> <span class="RUBY_LOCAL_VAR_ID"> local_var <span class="RUBY_OPERATION_SIGN">= <span class="RUBY_IDENTIFIER">eval</span> <span class="RUBY_HEREDOC_ID"><<-"FOO"</span><span class="RUBY_SEMICOLON">;</span><span class="RUBY_LINE_CONTINUATION">\</span></div>
+    <div class="line"> <span class="RUBY_LOCAL_VAR_ID">&nbsp;&nbsp;local_var <span class="RUBY_OPERATION_SIGN">= <span class="RUBY_IDENTIFIER">eval</span> <span class="RUBY_HEREDOC_ID"><<-"FOO"</span><span class="RUBY_SEMICOLON">;</span><span class="RUBY_LINE_CONTINUATION">\</span></div>
 <div class="line"><span class="RUBY_LINE_HIGHLIGHT"><span class="RUBY_IDENTIFIER">printIndex</span> <span class = "RUBY_STRING">"Hello world!"</span></span></div>
 <div class="line"> <span class="RUBY_HEREDOC"> And now this is heredoc!</span></div>
 <div class="line"> <span class="RUBY_HEREDOC"> printIndex "Hello world again!"</span></div>
@@ -171,8 +173,8 @@ class RmtTheme < ActiveRecord::Base
       <table class="editor_medium_buttons"><tbody>
       <tr><td>Created: '
       Time::DATE_FORMATS[:rmtg]="%b %d, %Y at %I:%M %p"
-      @out+=created_at.localtime.to_formatted_s(:rmtg)+'<br/>Views: <span style="color:#E9A172;font-weight: heavy;font-size: 1.1em">'+times_clicked.to_s+'</span>&nbsp;&nbsp;Rank: <span style="color:#E9A172;font-weight: heavy;font-size: 1.1em">'+rank.to_s+'</span> / '+RmtTheme.count.to_s+'</td><td>Downloads: '+times_downloaded.to_s+'<br />&nbsp;</td><td><a class="button-plugin" href="'+("/theme/upvote/#{id}" )+'">Like</a></td></tr>
-      <tr><td>Likes: ' +upvotes.to_s+' Dislikes: '+downvotes.to_s+'</td><td><a class="button-plugin" href="'+("/theme/download/#{id}" )+'">Download</a></td><td><a class="button-plugin" href="'+("/theme/downvote/#{id}")+'">Dislike</a></td></tr>
+      @out+=created_at.localtime.to_formatted_s(:rmtg)+'<br/>Views: <span style="color:#E9A172;font-weight: heavy;font-size: 1.1em">'+times_clicked.to_s+'</span>&nbsp;&nbsp;Rank: <span style="color:#E9A172;font-weight: heavy;font-size: 1.1em">'+rank.to_s+'</span> / '+RmtTheme.count.to_s+'</td><td></td><td><a class="button-plugin" href="'+("/theme/upvote/#{id}" )+'">Like</a></td></tr>
+      <tr><td>Likes: ' +upvotes.to_s+' Dislikes: '+downvotes.to_s+' Comments: '+theme_comments.count.to_s+' Downloads: '+times_downloaded.to_s+'</td><td><a class="button-plugin" href="'+("/theme/download/#{id}" )+'">Download</a></td><td><a class="button-plugin" href="'+("/theme/downvote/#{id}")+'">Dislike</a></td></tr>
       </tbody></table> </div>'
      return @out
    end

@@ -42,20 +42,18 @@
     %>
       <br />
     </div>
-    <div class="content-text-right">
-    <%= #render "layouts/explanation"
-    %>
-      
-
-    </div>
-    </div>
+     <% if !@theme1 then %>
+         <div class="content-text-right">
+         <%= render "layouts/explanation" %>
+         </div>
+    <% end %>
   </div>
 
 
   <div class="footer-block">
     <div id="footer-container">
         <div id="footer-text">
-        &copy; 2011  rmthemegen.com
+        All contents &copy; 2011 David Heitzman
         </div>
     </div >
   </div>

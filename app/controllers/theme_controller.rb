@@ -1,7 +1,8 @@
 class ThemeController < ApplicationController
-  @@download_to_vote_ratio = 4  # for p opularity, it means 1 download is worth X upvotes or downvotes
+  @@download_to_vote_ratio = 4  #for p opularity, it means 1 download is worth X upvotes or downvotes
   @@view_points =1 #popularity increase for a theme getting viewed
   @@upvote_points = 3
+  @@comment_points = 2 #pop_score increases by this much when someeone comments 
   @@downvote_points = 1
   helper :all
   
@@ -32,9 +33,9 @@ class ThemeController < ApplicationController
 
 
   def populate_themes_for_display
-    @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank).shuffle
-    @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
-    @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
+   # @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank).shuffle
+   # @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
+   # @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
 
     @theme_categories =[{},{},{},{},{},{}]#,"Popular", "New", "Most Commented On", "Color", "Dark", "Light"
     @theme_categories[0]["Popular"] = RmtTheme.find(:all,:order=>:rank,:limit=>4)
@@ -54,7 +55,9 @@ class ThemeController < ApplicationController
    # @theme1 = RmtTheme.all.shuffle!.first
     populate_themes_for_display
     get_news
-     do_maintenance
+
+    #this is costly: 
+    do_maintenance
   end
 
   def show_colortype_page
@@ -94,12 +97,30 @@ class ThemeController < ApplicationController
 
   def show
     @theme1=RmtTheme.find(params[:id])
+    @theme1.pop_score += @@view_points
+    @theme1.save
     if session[:theme_comment]
       @comment = ThemeComment.new(session[:theme_comment])
     else
       @comment = ThemeComment.new(:theme_id=>params[:id])
     end
     @previous_comments = @theme1.theme_comments.all( :order=>"created_at desc", :limit=>10)
+   #other themes you may like: 
+    case @theme1.bg_color_style
+       when 0: @others = RmtTheme.all( :conditions=>"bg_color_style=0").shuffle[0..2]
+               @others << RmtTheme.all( :conditions=>"bg_color_style=1").shuffle[0]
+               @others << RmtTheme.all( :conditions=>"bg_color_style=2").shuffle[0]
+         @others.shuffle!
+       when 1:  @others = RmtTheme.all( :conditions=>"bg_color_style=1").shuffle[0..2]
+               @others << RmtTheme.all( :conditions=>"bg_color_style=0").shuffle[0]
+               @others << RmtTheme.all( :conditions=>"bg_color_style=2").shuffle[0]
+         @others.shuffle!
+       when 2:  @others = RmtTheme.all( :conditions=>"bg_color_style=0").shuffle[0..2]
+               @others << RmtTheme.all( :conditions=>"bg_color_style=1").shuffle[0]
+               @others << RmtTheme.all( :conditions=>"bg_color_style=2").shuffle[0]
+         @others.shuffle!
+       else   @others = RmtTheme.all.shuffle[0..4]
+    end
   end
   
   def upvote

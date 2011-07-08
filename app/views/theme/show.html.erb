@@ -1,23 +1,37 @@
 <div class="medium_theme_block">
 <%=raw  @theme1.to_html_medium %>
-   
-</div>
-<div class="previous_comments">
-    <div id="new_comment">
 
-  <% form_for @comment do |c| %>
-     <div> <%= c.label  "Add a new comment", :for=>:comments %></div>
-     <div style="display:inline;"> <%= c.text_area :comment, :cols => 70, :rows=>8, :value=>@comment.comment.to_s %>
-     <div> <%= c.text_field :theme_id, :hidden=>true%></div>
-     <%= raw get_captcha() %> </div>
-     <div> <%= c.submit "Submit" %></div>
-  <% end %>
-      
-    </div>
-<div class="comments_header">Previous comments</div>
-  <table>
-<% @previous_comments.each do |com| %>
-     <tr><td style="width: 623px;">&ldquo; &nbsp;  <%= com.comment %>&nbsp;&rdquo;</td><td style="vertical-align:top;"><%=com.created_at.to_s %></td></tr>
+
+ <div class="theme_comment_box" ><div id="new_comment">
+      <div class="previous_comments">
+      <div class="title">Add a new comment ...</div>
+
+     <% form_for @comment do |c| %>
+        <%= c.text_area :comment, :cols => 42, :rows=>8, :value=>@comment.comment.to_s, :class=>"new_comment_text_area" %>
+        <%= c.text_field :theme_id, :hidden=>true%>
+        <%= raw get_captcha() %>
+        <div style="margin-right:0px;padding-right:5px;text-align:right;"> <%= c.submit "Submit"%></div>
      <% end %>
-</table>
+
+
+
+      <div class="title">Previous comments</div>
+         <table>
+         <% @previous_comments.each do |com| %>
+         <tr><td class="comment">&ldquo; &nbsp;  <%= com.comment %>&nbsp;&rdquo;</td><td class="date"><%=raw com.created_at.strftime("%B %d, <br />%I:%H %p") %></td></tr>
+         <% end %>
+         </table>
+      </div>
+ </div>
+ </div>
+<div class="others_you_may_like">
+   <div class="items">
+      Other Themes You May Like: 
+   <% if @others then %>
+      <% @others.each do |theme| %>
+         <%=raw theme.to_html_small %>
+      <% end %>
+   <% end %>
+   </div>
+   </div>
 </div>
