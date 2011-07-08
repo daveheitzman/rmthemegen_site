@@ -1,30 +1,33 @@
 
-<%  @the_themes = @dark_themes || @light_themes || @color_themes
-    
+
+<div class="medium_theme_block">
+   <%= @per_row =5;
+       raw will_paginate @the_themes
+   %>
+   <span style="font-weight:bold;font-style: italic;"><%=@the_themes_title %></span>
+   <ul>
+   <li><div class="category_row pagetype">
+      <% @the_themes.each_index do |ind1| %>
+         
+         <%=raw  @the_themes[ind1].to_html_small"Rank: "+(@the_themes[ind1].rank.to_s) %>
+
+         <% if ( (ind1+1) % @per_row) == 0 && (ind1 < @the_themes.size-1)   %>
+            <%=raw '</div></li><li><div class="category_row pagetype">' %>
+         <% end  %>
+
+      <% end    %>
+      </div>
+   </li>
+   </ul>
+   <div class="category_row pagetype">
+   <%=  raw will_paginate @the_themes
+   %>
+   </div>
+</div>
+
+
+
+
+
+<%= render "newsfeed"
 %>
-
-
-<%=  raw will_paginate @the_themes  %>
-
-
-<span class="theme_type_announce" style="width:100%;padding:0;margin:0;">
-<table style="width:100%;padding:0;margin:0;">
- <%= raw bg_color_types_menu %>
-<% bgcolor = case @the_themes[0].bg_color_style
-        when 0; "black"
-        when 1; "#dedede"
-        when 2; "yellow"
-   end
-   @out=''
-   @the_themes.each_index do |ind1|
-   @out += '<td style="background-color:'+bgcolor+';"><div style="width:100%;height:100%;margin:0 0 0 4px;">'+ theme_to_html(@the_themes[ind1])+'</div></td>'
-   if ((ind1+1) % 3) == 0 then @out = "<tr>"+@out+"</tr>" end
- end %>
-<%= raw @out %>
-
-</tr>
-</table>
-</span>
-
-<%=  raw will_paginate @the_themes  %>
-<%= render "newsfeed" %>

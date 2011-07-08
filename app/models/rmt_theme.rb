@@ -3,8 +3,8 @@ require 'will_paginate'
 
 class RmtTheme < ActiveRecord::Base
   
-  @minimum_themes = 150 #for each category
-  if ENV["RAILS_ENV"]=="development" then @minimum_themes= 25 end
+  @minimum_themes = 850 #for each category
+  if ENV["RAILS_ENV"]=="development" then @minimum_themes= 5*16 end
   @bg_styles = [0,1,2]
   cattr_reader :per_page
   @@per_page = 12
@@ -19,16 +19,20 @@ class RmtTheme < ActiveRecord::Base
       
     lowest_ranked = find( :all, :order=>"`rank` desc, `created_at` asc ",  :limit=>1)[0]
     #delete file from disk
-    if lowest_ranked
+
+   @themes_existing = find(:all).size
+
+   if lowest_ranked && @themes_existing >= @minimum_themes
+      @themes_existing -= 1
       File.delete(lowest_ranked.file_path) if File.exists?(lowest_ranked.file_path)
       msg = "#{lowest_ranked.style_pretty} theme '#{lowest_ranked.nice_name}' deleted"
       msg[0]=msg[0,1].upcase
       lowest_ranked.newsfeeds << Newsfeed.create(:message =>msg)
       lowest_ranked.delete
-      end
+   end
     
-    while ( where("`bg_color_style`=?", 0).size < @minimum_themes )
-      create_theme(:bg_color_style => (rand*3).to_i)
+    while ( @themes_existing < @minimum_themes )
+      @themes_existing += 1 if create_theme(:bg_color_style => (rand*3).to_i)
     end
 
   end
@@ -87,7 +91,7 @@ class RmtTheme < ActiveRecord::Base
     end
   end
 
-  def to_html_small
+  def to_html_small(message)
   
   @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name)+'"</div><div class="editor small"><div id="'+theme_name+'">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require </span><span class="RUBY_KEYWORD">File.dirname</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CONSTANT">__FILE__</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_OPERATION_SIGN">+</span><span class = "RUBY_STRING">"/token_list"</span></div>
@@ -122,11 +126,16 @@ class RmtTheme < ActiveRecord::Base
 <div class="line">\\\\\\\\\\</div>
 <div class="line">end</div>
 <div class="line">end</div>
+</div></div>'
 
 
-</div></div></div>
-</a>'
-    return @out
+
+   if message.size > 0 then
+     @out += '<div "editor_small_message">'+message+'</div>'
+   end
+
+   @out += '</div></a>'
+   return @out
   end
 
 

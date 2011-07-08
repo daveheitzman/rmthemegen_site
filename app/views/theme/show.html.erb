@@ -29,7 +29,7 @@
       Other Themes You May Like: 
    <% if @others then %>
       <% @others.each do |theme| %>
-         <%=raw theme.to_html_small %>
+         <%=raw theme.to_html_small('') %>
       <% end %>
    <% end %>
    </div>

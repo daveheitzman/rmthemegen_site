@@ -60,7 +60,7 @@ AptifugeCom::Application.routes.draw do
   match 'theme/download/:id' => "theme#download"
   
   resources :theme do
-    get 'show_colortype_page/:type'  => "theme#show_colortype_page", :on=>:collection
+    get 'typepage/:type'  => "theme#show_colortype_page", :on=>:collection
   end
 
   resources :theme_comments

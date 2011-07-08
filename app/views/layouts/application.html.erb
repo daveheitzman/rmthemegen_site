@@ -33,16 +33,18 @@
     </div>
   </div>
   <div id="menu_top_wrapper">
-   <%= render "layouts/menu" %>
+   <%=render "layouts/menu"
+   %>
   </div>
   <div id="content-block">
   <div class="content-container">
     <div class="content-text-left">
+       <%= flash[:notice] if flash[:notice] %>
     <%= yield
     %>
       <br />
     </div>
-     <% if !@theme1 then %>
+     <% if !@theme1 && !@the_themes then %>
          <div class="content-text-right">
          <%= render "layouts/explanation" %>
          </div>

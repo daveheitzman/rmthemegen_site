@@ -1,41 +1,12 @@
 class ThemeController < ApplicationController
   @@download_to_vote_ratio = 4  #for p opularity, it means 1 download is worth X upvotes or downvotes
-  @@view_points =1 #popularity increase for a theme getting viewed
+  @@view_points = 1 #popularity increase for a theme getting viewed (same as a click )
   @@upvote_points = 3
   @@comment_points = 2 #pop_score increases by this much when someeone comments 
   @@downvote_points = 1
   helper :all
-  
-  before_filter :make_banner 
-  
-  
-  def make_banner
-    #makes a banner with the regular greenish background, but random foreground colors for each letter. 
-      @fonts = ["Monaco","DejaVu Sans Mono", "Monospace", "Sans Serif", "Serif", "Fantasy", "Courier"]
-      @bgcol = "FFFFFF"
-      @rc= RMThemeGen::ThemeGenerator.new
-      @ban = '<span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont =>0.30)+';">r</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.30)+';">m</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">t</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">h</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">e</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">m</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">e</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">g</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">e</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">n</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">.</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">c</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">o</span>'+
-            '<span style="color:#'+@rc.randcolor(:bg_rgb=>@bgcol, :min_cont=>0.3)+';">m</span>' +'</span>'
-  end
-
 
   def populate_themes_for_display
-   # @dark_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',0],:order => :rank).shuffle
-   # @light_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',1],:order => :rank).shuffle
-   # @color_themes = RmtTheme.all(:conditions=>['bg_color_style = ?',2],:order => :rank).shuffle
 
     @theme_categories =[{},{},{},{},{},{}]#,"Popular", "New", "Most Commented On", "Color", "Dark", "Light"
     @theme_categories[0]["Popular"] = RmtTheme.find(:all,:order=>:rank,:limit=>4)
@@ -45,34 +16,33 @@ class ThemeController < ApplicationController
     @theme_categories[3]["Color Backgrounds"] = RmtTheme.where(:bg_color_style=>2).limit(4)
     @theme_categories[4]["Light Backgrounds"] = RmtTheme.where(:bg_color_style=>1).limit(4)
     @theme_categories[5]["Dark Backgrounds"] = RmtTheme.where(:bg_color_style=>0).limit(4)
-
   end
   
   def index
     flash[:notice] = ''
-   # flash[:notice] = "do maintenance theme called"
-    #get a theme and display
-   # @theme1 = RmtTheme.all.shuffle!.first
     populate_themes_for_display
     get_news
 
-    #this is costly: 
-    do_maintenance
+   #this is costly:
+   RmtTheme.do_maintenance
+   RmtTheme.rerank
   end
 
   def show_colortype_page
-    @dark_themes = nil
-    @light_themes= nil
-    @color_themes= nil
-    which_page = params[:page] || 1
-    case (params[:type])
-      when "dark"
-      @dark_themes = RmtTheme.paginate :page => which_page, :conditions=>['bg_color_style = ?',0], :order => 'rank asc'
-      when "color"
-      @color_themes = RmtTheme.paginate :page => which_page, :conditions=>['bg_color_style = ?',2], :order => 'rank asc'
-      when "light"
-      @light_themes = RmtTheme.paginate :page => which_page, :conditions=>['bg_color_style = ?',1], :order => 'rank asc'
+     @per_row = 5
+     @rows = 5
+    @the_themes_title = params[:type].gsub("+"," ")
+    @the_themes = case (@the_themes_title)
+      when "Popular":  RmtTheme.paginate(:order=>:rank,:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
+      when "New": RmtTheme.paginate(:order=>["created_at desc" ],:per_page=>@rows * @per_row, :page=>params[:page])
+      when "Most Commented On": sql = "select *, (select count(*) from `theme_comments` where `rmt_themes`.id = `theme_comments`.`theme_id`) as `commentcount`  from `rmt_themes` order by commentcount desc"
+         RmtTheme.paginate_by_sql(sql,:page=>params[:page],:per_page=>@rows * @per_row)
+      when "Color Background": RmtTheme.paginate(:conditions=>["bg_color_style=?",2],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
+      when "Light Background": RmtTheme.paginate(:conditions=>["bg_color_style=?",1],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
+      when "Dark Background": RmtTheme.paginate(:conditions=>["bg_color_style=?",0],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
+      else RmtTheme.paginate( :page=>params[:page],:per_page=>@rows * @per_row).shuffle
     end
+
     get_news
     render "theme/colortypepage"
   end
@@ -89,15 +59,16 @@ class ThemeController < ApplicationController
       @theme1.newsfeeds << Newsfeed.create(:message=>msg)
       @theme1.save
     end
-    do_maintenance
+    RmtTheme.do_maintenance
     populate_themes_for_display
-    get_news
+    
   end
 
 
   def show
     @theme1=RmtTheme.find(params[:id])
     @theme1.pop_score += @@view_points
+    @theme1.times_clicked += 1
     @theme1.save
     if session[:theme_comment]
       @comment = ThemeComment.new(session[:theme_comment])
@@ -166,7 +137,4 @@ class ThemeController < ApplicationController
     @news = Newsfeed.all :order=>"`created_at` desc", :limit=>10
   end
 
-  def do_maintenance
-    RmtTheme.do_maintenance
-  end
 end
