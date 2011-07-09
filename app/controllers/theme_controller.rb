@@ -7,7 +7,6 @@ class ThemeController < ApplicationController
   helper :all
 
   def populate_themes_for_display
-
     @theme_categories =[{},{},{},{},{},{}]#,"Popular", "New", "Most Commented On", "Color", "Dark", "Light"
     @theme_categories[0]["Popular"] = RmtTheme.find(:all,:order=>:rank,:limit=>4)
     @theme_categories[1]["New"] = RmtTheme.find(:all, :order=>["created_at asc" ], :limit=>4)
@@ -134,7 +133,7 @@ class ThemeController < ApplicationController
   end
 
   def get_news
-    @news = Newsfeed.all :order=>"`created_at` desc", :limit=>10
+    @news = Newsfeed.all :order=>"`created_at` desc", :limit=>15
   end
 
 end

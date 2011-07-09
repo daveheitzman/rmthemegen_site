@@ -204,54 +204,65 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, th
 }
 
 
+#newsfeed-area .pagination em {
+   font-weight:bold;
 
-.pagination {
+}
+#newsfeed-area .pagination {
+   color:#565756;
+   border:none;
+   background:inherit;
+   text-align:center;
+}
+#newsfeed-area .pagination .previous_page .disabled {
+   background:inherit;
+   
+   color:red;
+   font-size:0.8em;
+}
+#newsfeed-area .pagination a {
+   background:inherit;
+   font-size: 0.9em;
+   color:#565756;
+}
+#newsfeed-area .pagination a:hover {
+   text-decoration:underline;
+   color: #454545;
+   font-size: 0.9em;
+}
+
+
+.medium_theme_block .pagination em {
+   font-weight:bold;
+   background-color:white;
+}
+.medium_theme_block .pagination {
+
+
     padding: 2px 0px 2px 0px;
-    text-align:center;
+    text-align:right;
     width: 99.5%;
     float:left;
-    /*background-color: #489EB1;*/
-    border: 1px solid #7F7F7F;
     color: #4f3f5f;
     line-height: 1.5em;
     font-size: 1.2em;
-    -webkit-border-radius: 2px;
 }
-.pagination .previous_page .disabled   {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -border-radius: 3px;
+.medium_theme_block .pagination .previous_page .disabled   {
     color: grey;
-    background-color:#b7b7b7;
-    border: black 1px;
     height: 1.3em;
     padding: 2px 6px 2px 6px;
 }
-.pagination  {
-    width:99.7%;
-    color:#44ffe;
-    padding:2px 0px 2px 0px;
-    maring:0px;
-}
-.pagination a {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -border-radius: 3px;
+.medium_theme_block .pagination a {
     color:#444444;
-    background-color:#3DC33D;
-    border: black 1px;
     height: 1.3em;
     padding: 2px 6px 2px 6px;
 }
 
-.pagination a:hover {
-
+.medium_theme_block .pagination a:hover {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -border-radius: 5px;
     text-decoration: none;
-    background-color:#47FF47;
-    border: black 1px;
     height: 1.3em;
     padding: 2px 6px 2px 6px;
 }
@@ -689,7 +700,6 @@ a.button-plugin img {
 	padding: 10px 0px;
 }
 
-
 .lineNumber {
 	height: 15px;
 	padding-left: 10px;
@@ -720,11 +730,9 @@ a.button-plugin img {
    padding-left:0px;
    padding-right:0px;
    margin-right:0;
-
 }
 
 .categories_all {
-   
    /*the large square block that the theme rows all sit in.*/
    display:block;
    background:#FFFFFF;
@@ -732,10 +740,10 @@ a.button-plugin img {
    width:100%;
 }
 
-
 .category_row li {
    list-style: none;
 }
+
 .category_row {
    height: 196px;
    width:772px;
@@ -755,7 +763,7 @@ a.button-plugin img {
    overflow-y:hidden;
 }
 
-.category_row .editor_box:hover {
+.editor_box:hover {
    background: #aaaaaa;
    color:#ebebeb;
 }
@@ -774,16 +782,16 @@ a.button-plugin img {
    overflow-y:hidden;
    color:#bbbbbb;
 }
-.editor_small_message {
-   
 
+.editor_small_message {
 }
 
 .category_row .editor_title:hover {
    color:inherit;
 }
+
 .editor_title {
-  display:inline;  
+  
   font-size: 1.1em;
   font-weight:bold;
   text-shadow: 1px 1px 1px #333333 ;
@@ -791,7 +799,7 @@ a.button-plugin img {
   color:inherit;
   margin:2px 4px 2px 4px;
   overflow-x:hidden;
-  overflow-y:hidden;
+  
 }
 
 .editor {
@@ -814,7 +822,7 @@ a.button-plugin img {
    margin:4px;
    width:128%;
    min-height:960px;
-   max-height:1575px;
+   max-height:1675px;
    background: #aabbcc;
    
 }
@@ -825,8 +833,48 @@ a.button-plugin img {
    height:150px;
 }
 
+#nav_menu form {
+   padding:5px;
+   margin-left:auto;
+   margin-right:5px;
+   position:relative;
+   right:2px;
+}
 #nav_menu {
-   background:yellowgreen;
+   background:#FFC800;
+   font-size:1.4em;
+   text-align:center;
+   color:white;
+   height:45px;
+   padding:10px 5px 10px 5px;
+   margin:3px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -border-radius: 3px;
+}
+
+#nav_menu .button a {
+   color:#EEEEEE;
+   margin:8px;
+   text-shadow: 1px 1px 2px black;
+   font-size: 1.1em;
+   font-weight:bold;
+}
+#nav_menu .button  {
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -border-radius: 3px;
+   display:inline;
+   margin:14px 18px 14px 18px;
+   padding:4px 8px 4px 8px;
+   background-color:#FFF684;
+   border-right:1px solid grey;
+   border-bottom:1px solid grey;
+}
+
+#nav_menu .button:hover {
+   background-color:#C1FB86;
+   color: #ccffcc;
 }
 
 .editor_box_medium {

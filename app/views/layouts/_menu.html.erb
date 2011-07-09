@@ -1,13 +1,14 @@
 <div id="nav_menu">
    <p><%=#" | "+(link_to "Login/Register" ,new_rmt_devise_user_session_path)
       %>
-   <%= link_to "New Themes","/theme/typepage/New" %>
-   <%= link_to " | All Themes","/theme/typepage/All" %>
-   <%= link_to " | Popular Themes","/theme/typepage/Popular" %>
-   <%= link_to " | Most Commented On Themes","/theme/typepage/Most+Commented+On" %>
-   <%= link_to " | Color Background Themes","/theme/typepage/Color+Background" %>
-   <%= link_to " | Dark Background Themes","/theme/typepage/Dark+Background" %>
-   <%= link_to " | Light Background Themes","/theme/typepage/Light+Background" %>
+   <div class="button"><%= link_to " Newest ","/theme/typepage/Newest" %></div>
+   <div class="button"><%= link_to " All ","/theme/typepage/All" %></div>
+   <div class="button"><%= link_to " Popular ","/theme/typepage/Popular" %></div>
+   <div class="button"><%= link_to " Most Comments ","/theme/typepage/Most+Commented+On" %></div>
+   
+   <div class="button"><%= link_to " Color ","/theme/typepage/Color+Background" %></div>
+   <div class="button"><%= link_to " Dark ","/theme/typepage/Dark+Background" %></div>
+   <div class="button"><%= link_to " Light ","/theme/typepage/Light+Background" %></div>
    <% form_for :rmt_theme, :target=>"/theme/search" do |e| %>
       <%= e.label "Search" %>
       <%= e.text_field :search_term %>

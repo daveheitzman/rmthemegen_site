@@ -4,7 +4,8 @@
    <%= @per_row =5;
        raw will_paginate @the_themes
    %>
-   <span style="font-weight:bold;font-style: italic;"><%=@the_themes_title %></span>
+   <span style="font-weight:bold;font-style: italic;"><%=@the_themes_title %>
+   <%=  " ( "+@the_themes.size.to_s+" )" if @the_themes_title.include? "All" %></span>
    <ul>
    <li><div class="category_row pagetype">
       <% @the_themes.each_index do |ind1| %>
