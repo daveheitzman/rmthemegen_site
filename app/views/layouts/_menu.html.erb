@@ -9,11 +9,6 @@
    <div class="button"><%= link_to " Color ","/theme/typepage/Color+Background" %></div>
    <div class="button"><%= link_to " Dark ","/theme/typepage/Dark+Background" %></div>
    <div class="button"><%= link_to " Light ","/theme/typepage/Light+Background" %></div>
-   <% form_for :rmt_theme, :target=>"/theme/search" do |e| %>
-      <%= e.label "Search" %>
-      <%= e.text_field :search_term %>
-      <%= e.submit "Submit" %>
-   <% end %>
 
    </p>
 </div>

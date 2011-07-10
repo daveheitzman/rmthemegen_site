@@ -4,7 +4,7 @@
    <% if @news
     @news.each do |n|
     %>
-   <div class="newsfeed-line"><div style="width:600px;float:left;"> <%=raw n.message %></div><div  style="display:inline;width:200px;"> <%= raw n.updated_at.to_time.to_formatted_s(:long_ordinal)  %></div></div>
+   <div class="newsfeed-line"><div style="width:600px;float:left;"> <%=raw n.message %></div><div  style="display:inline;width:200px;"> <%= raw n.updated_at.localtime.to_formatted_s(:long_ordinal)  %></div></div>
 <% end   end %>
    <div style="text-align:right;"></div>
 </div>

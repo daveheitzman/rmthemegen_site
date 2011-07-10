@@ -1,0 +1,11 @@
+
+   <% form_for :rmt_theme, :target=>"/theme/search" do |e|
+   %>
+      <%= e.label "Search"
+      %>
+      <%= e.text_field :search_term
+      %>
+      <%= e.submit "Submit"
+      %>
+   <%  end
+   %>

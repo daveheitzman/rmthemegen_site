@@ -3,8 +3,12 @@ require 'will_paginate'
 
 class RmtTheme < ActiveRecord::Base
   
-  @minimum_themes = 850 #for each category
-  if ENV["RAILS_ENV"]=="development" then @minimum_themes= 5*16 end
+  @minimum_themes = 830 #for each category
+  @maximum_themes = 850
+  if ENV["RAILS_ENV"]=="development" then
+     @minimum_themes= 5*16
+     @maximum_themes= 5*16+11 
+  end
   @bg_styles = [0,1,2]
   cattr_reader :per_page
   @@per_page = 12
@@ -15,26 +19,22 @@ class RmtTheme < ActiveRecord::Base
 
   def self.do_maintenance
 
-    #this deletes the least popular XX% and refills.
-      
-    lowest_ranked = find( :all, :order=>"`rank` desc, `created_at` asc ",  :limit=>1)[0]
-    #delete file from disk
-
-   @themes_existing = find(:all).size
-
-   if lowest_ranked && @themes_existing >= @minimum_themes
-      @themes_existing -= 1
-      File.delete(lowest_ranked.file_path) if File.exists?(lowest_ranked.file_path)
-      msg = "#{lowest_ranked.style_pretty} theme '#{lowest_ranked.nice_name}' deleted"
-      msg[0]=msg[0,1].upcase
-      lowest_ranked.newsfeeds << Newsfeed.create(:message =>msg)
-      lowest_ranked.delete
+   if RmtTheme.count > @maximum_themes
+      lowest_ranked = find( :all, :order=>"`rank` desc, `created_at` asc ")[0..rand(@maximum_themes-@minimum_themes)+2]
+      lowest_ranked.each {|i|
+         File.delete(i.file_path) if File.exists?(i.file_path)
+         msg = "#{i.style_pretty} theme '#{i.nice_name}' deleted"
+         msg[0]=msg[0,1].upcase
+         i.newsfeeds << Newsfeed.create(:message =>msg)
+         i.delete
+      }
+   elsif RmtTheme.count <= @maximum_themes && RmtTheme.count > @minimum_themes
+      create_theme(:bg_color_style => (rand*3).to_i)
+   else # create themes until at least the minimum number exist
+      while (RmtTheme.count <= @minimum_themes )
+         create_theme(:bg_color_style => (rand*3).to_i)
+      end
    end
-    
-    while ( @themes_existing < @minimum_themes )
-      @themes_existing += 1 if create_theme(:bg_color_style => (rand*3).to_i)
-    end
-
   end
 
   def self.rerank
@@ -58,7 +58,7 @@ class RmtTheme < ActiveRecord::Base
     end
     theme_generator = RMThemeGen::ThemeGenerator.new
     nt = theme_generator.make_theme_file(dir1,opts[:bg_color_style],nil)
-    new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.now,:last_downloaded=>Time.now,:last_clicked=>Time.now,:rank=>0, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt) )
+    new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.zone.now,:last_downloaded=>Time.zone.now,:last_clicked=>Time.zone.now,:rank=>0, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt), :pop_score => rand(5).to_i )
     new_theme_record.to_css = theme_generator.to_css
     new_theme_record.theme_name = theme_generator.themename
     new_theme_record.bg_color_style = opts[:bg_color_style]
@@ -66,7 +66,7 @@ class RmtTheme < ActiveRecord::Base
 
     msg = "#{new_theme_record.style_pretty} theme <a href='/theme/#{new_theme_record.id}'>'#{new_theme_record.nice_name}'</a> created"
     msg[0]=msg[0,1].upcase
-    new_theme_record.newsfeeds << Newsfeed.create(:message=>msg)
+    new_theme_record.newsfeeds << Newsfeed.create(:message=>msg, :created_at=>Time.zone.now)
 
     new_theme_record.save
     # create theme (ie save file)
@@ -93,7 +93,7 @@ class RmtTheme < ActiveRecord::Base
 
   def to_html_small(message)
   
-  @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name)+'"</div><div class="editor small"><div id="'+theme_name+'">'
+  @out = to_css+'<a href="'+"/theme/#{id}"+'"><div class="editor_box"><div class="editor_title">"'+(nice_name[0..17])+'"</div><div class="editor small"><div id="'+theme_name+'">'
       @out +='<div class="line"><span class = "RUBY_SPECIFIC_CALL">require </span><span class="RUBY_KEYWORD">File.dirname</span><span class="RUBY_BRACKETS">(</span><span class="RUBY_CONSTANT">__FILE__</span><span class="RUBY_BRACKETS">)</span><span class="RUBY_OPERATION_SIGN">+</span><span class = "RUBY_STRING">"/token_list"</span></div>
 <div class="line">&nbsp; </div>
 <div class="line"><span class="RUBY_CONSTANT">CONSTANT</span><span class="RUBY_OPERATION_SIGN"> =</span><span class="RUBY_NUMBER"> 777</span><span class="RUBY_COMMENT">&nbsp;&nbsp; #TODO: change to 778</span></div>
