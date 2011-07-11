@@ -58,7 +58,7 @@ class RmtTheme < ActiveRecord::Base
     end
     theme_generator = RMThemeGen::ThemeGenerator.new
     nt = theme_generator.make_theme_file(dir1,opts[:bg_color_style],nil)
-    new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.zone.now,:last_downloaded=>Time.zone.now,:last_clicked=>Time.zone.now,:rank=>0, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt), :pop_score => rand(5).to_i )
+    new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.zone.now,:last_downloaded=>Time.zone.now,:last_clicked=>Time.zone.now,:rank=>9999999, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt), :pop_score => rand(5).to_i )
     new_theme_record.to_css = theme_generator.to_css
     new_theme_record.theme_name = theme_generator.themename
     new_theme_record.bg_color_style = opts[:bg_color_style]

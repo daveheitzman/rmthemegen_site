@@ -34,7 +34,7 @@ class ThemeController < ApplicationController
      
    case (@the_themes_title)
        when "Popular":
-         @the_themes =  RmtTheme.paginate(:order=>:rank,:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row, :limit=>(RmtTheme.count/4).to_i)
+         @the_themes =  RmtTheme.paginate(:order=>:rank,:conditions =>["rank > ?",0],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row, :limit=>(RmtTheme.count/4).to_i)
          @page_label= @the_themes_title+" ( #{(RmtTheme.count/4).to_i.to_s} )"
       when "New": RmtTheme.paginate(:order=>["created_at desc" ],:per_page=>@rows * @per_row, :page=>params[:page],:limit=>(RmtTheme.count/4).to_i)
          @page_label= @the_themes_title+" ( #{(RmtTheme.count/4).to_i.to_s} )"
