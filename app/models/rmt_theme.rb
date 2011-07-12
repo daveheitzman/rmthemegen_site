@@ -20,8 +20,8 @@ class RmtTheme < ActiveRecord::Base
   def self.do_maintenance
 
    if RmtTheme.count > @maximum_themes
-      lowest_ranked = find( :all, :order=>"`rank` desc, `created_at` asc ")[0..rand(@maximum_themes-@minimum_themes)+2]
-      lowest_ranked.each {|i|
+      the_chosen = find( :all, :order=>"`pop_score` asc").shuffle[0..rand(@maximum_themes-@minimum_themes)+2]
+      the_chosen.each {|i|
          File.delete(i.file_path) if File.exists?(i.file_path)
          msg = "#{i.style_pretty} theme '#{i.nice_name}' deleted"
          msg[0]=msg[0,1].upcase
@@ -57,7 +57,7 @@ class RmtTheme < ActiveRecord::Base
       Dir.mkdir(opts[:outputdir])
     end
     theme_generator = RMThemeGen::ThemeGenerator.new
-    nt = theme_generator.make_theme_file(dir1,opts[:bg_color_style],nil)
+    nt = theme_generator.make_theme_file(dir1,opts[:bg_color_style],nil,nil)
     new_theme_record = new(:theme_name => "", :to_css =>'', :times_downloaded=>0,:times_clicked=>0, :created_at=>Time.zone.now,:last_downloaded=>Time.zone.now,:last_clicked=>Time.zone.now,:rank=>9999999, :upvotes=>0, :downvotes=>0,:bg_color_style=>0,:file_path=>File.expand_path(nt), :pop_score => rand(5).to_i )
     new_theme_record.to_css = theme_generator.to_css
     new_theme_record.theme_name = theme_generator.themename

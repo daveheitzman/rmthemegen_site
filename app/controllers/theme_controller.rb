@@ -33,11 +33,14 @@ class ThemeController < ApplicationController
    @the_themes_title = params[:type].gsub("+"," ")
      
    case (@the_themes_title)
-       when "Popular":
+
+      when "Popular":
          @the_themes =  RmtTheme.paginate(:order=>:rank,:conditions =>["rank > ?",0],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row, :limit=>(RmtTheme.count/4).to_i)
          @page_label= @the_themes_title+" ( #{(RmtTheme.count/4).to_i.to_s} )"
-      when "New": RmtTheme.paginate(:order=>["created_at desc" ],:per_page=>@rows * @per_row, :page=>params[:page],:limit=>(RmtTheme.count/4).to_i)
+
+      when "New":@the_themes =  RmtTheme.paginate(:order=>["created_at desc" ],:per_page=>@rows * @per_row, :page=>params[:page],:limit=>(RmtTheme.count/4).to_i)
          @page_label= @the_themes_title+" ( #{(RmtTheme.count/4).to_i.to_s} )"
+
       when "Most Commented On": sql = "select *, (select count(*) from `theme_comments` where `rmt_themes`.id = `theme_comments`.`theme_id`) as `commentcount`  from `rmt_themes` where (select count(*) from `theme_comments` where `rmt_themes`.id = `theme_comments`.`theme_id`) > 0 order by `commentcount` desc"
 
          cc= RmtTheme.find_by_sql(sql).size.to_s
@@ -46,15 +49,19 @@ class ThemeController < ApplicationController
          #cc = @the_themes.sum do |t| t.theme_comments.size end
          #@the_themes=RmtTheme.paginate(@the_themes,:page=>params[:page],:per_page=>@rows * @per_row)
          @page_label= @the_themes_title+" ( #{cc} )"
-      when "Color Background":
+
+      when "Color Backgrounds":
          @the_themes = RmtTheme.paginate(:conditions=>["bg_color_style=?",2],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
          @page_label= @the_themes_title+" ( #{RmtTheme.where("bg_color_style=2").size} )"
-      when "Light Background":
+
+      when "Light Backgrounds":
          @the_themes = RmtTheme.paginate(:conditions=>["bg_color_style=?",1],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
          @page_label= @the_themes_title+" ( #{RmtTheme.where("bg_color_style=1").size} )"
-      when "Dark Background":
+
+      when "Dark Backgrounds":
          @the_themes = RmtTheme.paginate(:conditions=>["bg_color_style=?",0],:order=>"rank", :page=>params[:page],:per_page=>@rows * @per_row)
          @page_label= @the_themes_title+" ( #{RmtTheme.where("bg_color_style=0").size} )"
+
       else @the_themes = RmtTheme.paginate( :page=>params[:page],:per_page=>@rows * @per_row).shuffle;
          @page_label= @the_themes_title+" ( #{RmtTheme.count} )"
     end
